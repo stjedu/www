@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【電子學單元】BJT 電晶體小訊號放大與 rπ 等效模型交流分析教學 ✕ 高優計畫教師研習</title>
+    <!-- Google Fonts & KaTeX -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@600;700;800;900&family=Noto+Sans+TC:wght@300;400;500;700;900&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    
+    <style>
+        :root {
+            --brand-primary: #ea580c;
+            --brand-primary-hover: #c2410c;
+            --brand-primary-light: #fff7ed;
+            --brand-blue: #0284c7;
+            --brand-blue-light: #f0f9ff;
+            --brand-dark: #0f172a;
+            --brand-slate: #334155;
+            --bg-page: #f8fafc;
+            --bg-card: #ffffff;
+            --border-light: #e2e8f0;
+            --font-main: "Noto Sans TC", "Inter", -apple-system, sans-serif;
+            --font-code: "Fira Code", monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--brand-slate);
+            font-family: var(--font-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Topbar */
+        .topbar {
+            background: linear-gradient(90deg, #0f172a 0%, #7c2d12 100%);
+            color: #ffedd5;
+            font-size: 0.85rem;
+            padding: 8px 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .topbar a {
+            color: #fdba74;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Header */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .header-inner {
+            max-width: 1380px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-badge {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 900;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(234, 88, 12, 0.25);
+            flex-shrink: 0;
+        }
+        .logo-text h1 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #475569;
+            font-size: 0.92rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover {
+            color: var(--brand-primary);
+        }
+        .btn-nav-primary {
+            background: var(--brand-primary);
+            color: #fff !important;
+            padding: 7px 16px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.88rem;
+            box-shadow: 0 4px 10px rgba(234, 88, 12, 0.25);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 5rem;
+        }
+
+        /* Hero */
+        .module-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+            border: 1px solid #fed7aa;
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(234, 88, 12, 0.06);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #ffedd5;
+            color: #9a3412;
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+        .module-hero h2 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--brand-dark);
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+        .module-hero p {
+            color: #475569;
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+        .hero-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .hero-tag {
+            background: #fff;
+            border: 1px solid #fdba74;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #c2410c;
+        }
+
+        /* Section Layout */
+        .sec-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--brand-dark);
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sec-title::before {
+            content: "";
+            width: 6px;
+            height: 26px;
+            background: var(--brand-primary);
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        /* Dual Circuit Comparison Card */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .circuit-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .circuit-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.08);
+        }
+        .circuit-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .circuit-tag {
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+        .circuit-tag-phys { background: #e0f2fe; color: #0369a1; }
+        .circuit-tag-ac { background: #ffedd5; color: #9a3412; }
+        .circuit-img-container {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #cbd5e1;
+            background: #ffffff;
+            margin-bottom: 1rem;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .circuit-img-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s;
+        }
+        .circuit-img-container img:hover {
+            transform: scale(1.02);
+        }
+        .circuit-points {
+            list-style: none;
+            font-size: 0.92rem;
+            color: #475569;
+        }
+        .circuit-points li {
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        /* 3-Step Transformation Workflow */
+        .workflow-box {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .step-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .step-num {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--brand-primary);
+            color: #fff;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 0.85rem;
+            box-shadow: 0 2px 6px rgba(234,88,12,0.3);
+        }
+        .step-title {
+            font-weight: 800;
+            color: var(--brand-dark);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+        }
+        .step-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* Calculation & Derivation Card */
+        .calc-card {
+            background: #ffffff;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        }
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .calc-method {
+            background: #fff8f0;
+            border-left: 5px solid var(--brand-primary);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+        }
+        .calc-method h4 {
+            color: var(--brand-primary);
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+        }
+        .formula-box {
+            background: #ffffff;
+            border: 1px solid #fed7aa;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 1.05rem;
+            text-align: center;
+        }
+
+        /* Interactive Live Calculator */
+        .interactive-calc {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+        }
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .calc-input-group {
+            margin-bottom: 1.2rem;
+        }
+        .calc-input-group label {
+            display: block;
+            font-size: 0.88rem;
+            color: #94a3b8;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .calc-slider-wrap {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .calc-slider-wrap input[type=range] {
+            flex: 1;
+            accent-color: #f97316;
+        }
+        .calc-val-pill {
+            background: #334155;
+            color: #fdba74;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-family: var(--font-code);
+            font-weight: 700;
+            min-width: 90px;
+            text-align: center;
+        }
+        .result-dashboard {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+        }
+        .res-gain {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #f97316;
+            font-family: var(--font-code);
+            line-height: 1;
+            margin: 0.8rem 0;
+        }
+        .res-phase {
+            display: inline-block;
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+        }
+
+        /* Pitfalls Card */
+        .pitfall-box {
+            background: #fff;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+        }
+        .pitfall-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1rem 1.25rem;
+            border-radius: 12px;
+        }
+        .pitfall-icon {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 40px 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 1px solid #1e293b;
+        }
+        .footer a {
+            color: #fdba74;
+            text-decoration: none;
+        }
+
+        @media (max-width: 900px) {
+            .module-hero, .comparison-grid, .workflow-steps, .calc-grid, .interactive-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Topbar -->
+    <div class="topbar">
+        <div>🎓 115學年上教育部高優計畫教師實務增能研習 · 電子學進階單元</div>
+        <div>
+            <a href="index.html">← 返回研習入口首頁</a>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo-wrap">
+                <div class="logo-badge">電</div>
+                <div class="logo-text">
+                    <h1>電子學小訊號分析旗艦單元</h1>
+                    <span>BJT SMALL-SIGNAL AMPLIFIER ✕ rπ MODEL</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#circuits">電路對照</a></li>
+                <li><a href="#workflow">化簡三步驟</a></li>
+                <li><a href="#calculation">雙推導過程</a></li>
+                <li><a href="#calculator">即時增益計算機</a></li>
+                <li><a href="#pitfalls">常考陷阱剖析</a></li>
+                <li><a href="index.html" class="btn-nav-primary">首頁題庫</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- Module Hero Banner -->
+        <section class="module-hero">
+            <div>
+                <div class="badge-pill">⚡ 技術型高中電機電子群 · 統測核心必考題型</div>
+                <h2>BJT 共射極小訊號放大<br><span style="color: var(--brand-primary);">rπ 混合模型交流分析實戰</span></h2>
+                <p>
+                    完整解析電晶體小訊號放大的精髓：從<strong>實體共射極偏壓電路</strong>如何透過<strong>交流短路化簡</strong>轉化為 <strong>rπ 交流等效模型</strong>，並提供「基極電流法」與「互導跨導法」雙向嚴謹數學推導！
+                </p>
+                <div class="hero-tags">
+                    <span class="hero-tag">✔ 實體電路 vs 交流等效模型</span>
+                    <span class="hero-tag">✔ 整數電壓增益 Av = -250</span>
+                    <span class="hero-tag">✔ 180° 反相相位特性</span>
+                    <span class="hero-tag">✔ 互動動態增益計算機</span>
+                </div>
+            </div>
+            <div>
+                <div style="background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid #fed7aa; box-shadow: 0 4px 15px rgba(234,88,12,0.1);">
+                    <h3 style="color: #0f172a; font-size: 1.15rem; margin-bottom: 0.8rem; font-weight: 800;">📌 研習出題 Master Prompt 成果</h3>
+                    <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1rem;">
+                        本單元所有<strong>雙電路結構圖</strong>、<strong>整數參數 (1.2kΩ / 100 / 3kΩ)</strong> 與<strong>防呆誘答選項</strong>皆由 Antigravity 代理人自動化生成並驗證完成。
+                    </p>
+                    <div style="background: #f8fafc; border-left: 3px solid #ea580c; padding: 8px 12px; font-size: 0.85rem; color: #64748b;">
+                        💡 <strong>命題設計亮點：</strong>Av = −(100 × 3k) / 1.2k = −250，漂亮整數不拖泥帶水，手算極為友好！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Dual Circuit Diagram Comparison -->
+        <section id="circuits">
+            <h3 class="sec-title">實體電路圖 vs 交流等效電路圖 完整對照</h3>
+            <div class="comparison-grid">
+                <!-- Circuit A: Physical Circuit -->
+                <div class="circuit-card">
+                    <div class="circuit-card-header">
+                        <span class="circuit-tag circuit-tag-phys">圖 A · 實體放大器電路</span>
+                        <span style="font-size: 0.85rem; color: #64748b; font-weight: 600;">含 DC 偏壓與交流訊號</span>
+                    </div>
+                    <div class="circuit-img-container">
+                        <img src="circuits/circuit4_schematic_ce_amp.png" alt="BJT 共射極實體偏壓電路圖">
+                    </div>
+                    <ul class="circuit-points">
+                        <li>🔌 <strong>分壓偏壓網路：</strong>$R_{B1} = 68\text{ k}\Omega$ 與 $R_{B2} = 12\text{ k}\Omega$ 建立靜態工作點 (Q 點)。</li>
+                        <li>⚡ <strong>射極電阻與旁路電容：</strong>$R_E = 1\text{ k}\Omega$ 提供直流溫度穩定，並聯 $C_E = 100\,\mu\text{F}$ 旁路電容。</li>
+                        <li>🔄 <strong>交連電容：</strong>輸入端 $C_1$ 與輸出端 $C_2$ 阻隔直流電位，只讓微小交流訊號通過。</li>
+                    </ul>
+                </div>
+
+                <!-- Circuit B: Small-Signal r-pi Model -->
+                <div class="circuit-card">
+                    <div class="circuit-card-header">
+                        <span class="circuit-tag circuit-tag-ac">圖 B · 交流小訊號 rπ 等效模型</span>
+                        <span style="font-size: 0.85rem; color: #ea580c; font-weight: 700;">純交流分析計算專用</span>
+                    </div>
+                    <div class="circuit-img-container">
+                        <img src="circuits/circuit4_r_pi_model.png" alt="BJT 交流小訊號 rπ 等效模型">
+                    </div>
+                    <ul class="circuit-points">
+                        <li>🎯 <strong>輸入等效電阻：</strong>$r_\pi = (\beta + 1) r_e \approx 1.2\text{ k}\Omega$，跨壓為 $v_\pi$。</li>
+                        <li>💎 <strong>受控相依電流源：</strong>流向下方的相依電流源 $g_m v_\pi = \beta i_b = 100 i_b$。</li>
+                        <li>📉 <strong>集極交流負載：</strong>直流電源 $V_{CC}$ 交流接地，使 $R_C = 3\text{ k}\Omega$ 下端直接連至地線。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: 3-Step Transformation Workflow -->
+        <section id="workflow">
+            <div class="workflow-box">
+                <h3 class="sec-title" style="margin-bottom: 0.5rem;">從實體電路化簡至小訊號等效模型的黃金三步驟</h3>
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    技術型高中學生在學電子學時，最常卡的瓶頸就是「為什麼實體電路會突然變成等效電路？」。只要掌握以下三步法則：
+                </p>
+                <div class="workflow-steps">
+                    <div class="step-item">
+                        <div class="step-num">1</div>
+                        <div class="step-title">直流電源交流短路接地</div>
+                        <div class="step-desc">
+                            由於直流偏壓電源 $V_{CC}$ 電位恆定，對交流訊號而言交流變化量為零 ($\Delta V = 0$)，因此在交流分析時，所有直流電源端點<strong>直接視為虛擬接地 (GND)</strong>。
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">2</div>
+                        <div class="step-title">電容容抗交流視為短路</div>
+                        <div class="step-desc">
+                            在交流信號頻率下，大電容 ($C_1, C_2, C_E$) 之交流容抗 $X_C = \frac{1}{2\pi f C} \approx 0\,\Omega$，皆可<strong>視為短路導線</strong>。旁路電容 $C_E$ 短路使射極 E 直接連地，形成「共射極 (CE)」。
+                        </div>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-num">3</div>
+                        <div class="step-title">電晶體置換為 rπ 模型</div>
+                        <div class="step-desc">
+                            將 NPN 電晶體本身三個接腳 (B, C, E) 置換為<strong>基極輸入電阻 $r_\pi$</strong> 與<strong>集極受控電流源 $\beta i_b$（或 $g_m v_\pi$）</strong>，即可輕鬆應用歐姆定律求解！
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Calculation & Derivation -->
+        <section id="calculation">
+            <div class="calc-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                    <h3 class="sec-title" style="margin-bottom: 0;">交流電壓增益 Av 雙向推導完整過程</h3>
+                    <span style="background: #dbeafe; color: #1e40af; font-weight: 700; font-size: 0.85rem; padding: 4px 12px; border-radius: 20px;">統測規範：推導步驟 100% 詳解</span>
+                </div>
+                <div class="calc-grid">
+                    <!-- Method 1 -->
+                    <div class="calc-method">
+                        <h4>【方法一】基極電流分析法（經典回路法）</h4>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 1：求輸入交流電壓方程式</strong></p>
+                        <p>訊號由基極進入，跨於 $r_\pi$ 兩端：</p>
+                        <div class="formula-box">
+                            $$v_i = v_\pi = i_b \cdot r_\pi = i_b \times 1.2\text{ k}\Omega$$
+                        </div>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 2：求輸出交流電壓方程式</strong></p>
+                        <p>受控電流源 $\beta i_b$ 往下流向接地，依歐姆定律輸出電壓為：</p>
+                        <div class="formula-box">
+                            $$v_o = -(\beta \cdot i_b) \cdot R_C = -(100 \cdot i_b) \times 3\text{ k}\Omega$$
+                        </div>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 3：相除求得小訊號交流電壓增益</strong></p>
+                        <div class="formula-box" style="border: 2px solid #ea580c; background: #fff7ed;">
+                            $$A_v = \frac{v_o}{v_i} = \frac{-\beta \cdot i_b \cdot R_C}{i_b \cdot r_\pi} = -\frac{\beta \cdot R_C}{r_\pi} = -\frac{100 \times 3\text{ k}\Omega}{1.2\text{ k}\Omega} = \mathbf{-250}$$
+                        </div>
+                    </div>
+
+                    <!-- Method 2 -->
+                    <div class="calc-method" style="border-left-color: #0284c7; background: #f0f9ff;">
+                        <h4 style="color: #0284c7;">【方法二】跨導分析法（互導速算法）</h4>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 1：計算電晶體交流互導 gm</strong></p>
+                        <p>互導代表輸入電壓對輸出集極電流之控制能力：</p>
+                        <div class="formula-box">
+                            $$g_m = \frac{\beta}{r_\pi} = \frac{100}{1.2\text{ k}\Omega} = \frac{1}{12}\text{ A/V} \approx 83.33\text{ mA/V}$$
+                        </div>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 2：由受控源直接定義輸出電壓</strong></p>
+                        <p>集極受控源電流為 $i_c = g_m v_\pi = g_m v_i$，故輸出為：</p>
+                        <div class="formula-box">
+                            $$v_o = -i_c \cdot R_C = -(g_m \cdot v_i) \cdot R_C$$
+                        </div>
+                        <p style="font-size: 0.92rem; color: #475569;"><strong>步驟 3：電壓增益一鍵公式秒殺速算</strong></p>
+                        <div class="formula-box" style="border: 2px solid #0284c7; background: #e0f2fe;">
+                            $$A_v = -g_m \cdot R_C = -\left(\frac{1}{12}\right) \times 3000\,\Omega = \mathbf{-250}$$
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Interactive Live Parameter Calculator -->
+        <section id="calculator">
+            <div class="interactive-calc">
+                <div class="interactive-grid">
+                    <div>
+                        <span style="background: #ea580c; color: #fff; font-size: 0.8rem; font-weight: 800; padding: 3px 10px; border-radius: 12px;">互動式調參工具</span>
+                        <h3 style="font-size: 1.8rem; font-weight: 900; margin: 0.8rem 0; color: #fff;">小訊號電晶體增益動態模擬器</h3>
+                        <p style="color: #94a3b8; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                            滑動調整下方參數，實時觀察輸入阻抗 $r_\pi$、電流增益 $\beta$ 與負載 $R_C$ 如何連動改變電壓放大倍數 $A_v$！
+                        </p>
+
+                        <!-- Slider 1: beta -->
+                        <div class="calc-input-group">
+                            <label>電流放大倍率 β (hfe)：</label>
+                            <div class="calc-slider-wrap">
+                                <input type="range" id="inputBeta" min="50" max="300" step="10" value="100" oninput="updateGain()">
+                                <div class="calc-val-pill" id="valBeta">100</div>
+                            </div>
+                        </div>
+
+                        <!-- Slider 2: r_pi -->
+                        <div class="calc-input-group">
+                            <label>輸入電阻 rπ (kΩ)：</label>
+                            <div class="calc-slider-wrap">
+                                <input type="range" id="inputRpi" min="0.5" max="3.0" step="0.1" value="1.2" oninput="updateGain()">
+                                <div class="calc-val-pill" id="valRpi">1.2 kΩ</div>
+                            </div>
+                        </div>
+
+                        <!-- Slider 3: RC -->
+                        <div class="calc-input-group">
+                            <label>集極負載電阻 RC (kΩ)：</label>
+                            <div class="calc-slider-wrap">
+                                <input type="range" id="inputRc" min="1.0" max="6.0" step="0.5" value="3.0" oninput="updateGain()">
+                                <div class="calc-val-pill" id="valRc">3.0 kΩ</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right result dashboard -->
+                    <div class="result-dashboard">
+                        <div style="font-size: 0.9rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">小訊號電壓增益 (Voltage Gain)</div>
+                        <div class="res-gain" id="outputAv">-250.0</div>
+                        <div class="res-phase">⚡ 反相相位角 180°（輸出反相放大）</div>
+                        
+                        <div style="text-align: left; background: rgba(0,0,0,0.25); border-radius: 10px; padding: 1rem; margin-top: 1rem; font-size: 0.88rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="color: #94a3b8;">計算跨導 gm：</span>
+                                <span style="color: #38bdf8; font-family: var(--font-code); font-weight: 700;" id="outputGm">83.33 mA/V</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
+                                <span style="color: #94a3b8;">等效射極電阻 re：</span>
+                                <span style="color: #38bdf8; font-family: var(--font-code); font-weight: 700;" id="outputRe">11.88 Ω</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #94a3b8;">輸入訊號峰值 10 mV 輸出：</span>
+                                <span style="color: #f97316; font-family: var(--font-code); font-weight: 700;" id="outputVout">-2.50 V (反相)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Common Student Pitfalls & Tricks -->
+        <section id="pitfalls">
+            <div class="pitfall-box">
+                <h3 class="sec-title">技術型高中統測常見命題陷阱與觀念盲點剖析</h3>
+                <div class="pitfall-item">
+                    <div class="pitfall-icon">🚨</div>
+                    <div>
+                        <strong style="color: #ea580c; font-size: 1.05rem;">陷阱一：正負號遺漏（誤選 +250）</strong>
+                        <p style="font-size: 0.9rem; color: #475569; margin-top: 4px;">
+                            共射極 (CE) 放大電路具備「輸入正半週、輸出負半週」的 180° 反相特性。許多學生只背誦公式大小數值 $\frac{\beta R_C}{r_\pi}$ 而忘記前面的負號，在統測單選題中誘答選項 (A) +250 即是為此而設。
+                        </p>
+                    </div>
+                </div>
+                <div class="pitfall-item">
+                    <div class="pitfall-icon">⚠️</div>
+                    <div>
+                        <strong style="color: #ea580c; font-size: 1.05rem;">陷阱二：rπ 與 re 混淆誤代</strong>
+                        <p style="font-size: 0.9rem; color: #475569; margin-top: 4px;">
+                            $r_\pi$ 為基極看進去的等效阻抗（約數千歐姆），而 $r_e$ 為射極看進去的阻抗（約數十歐姆），兩者相差 $(1+\beta)$ 倍。若題目給予 $r_e$，增益應代公式 $A_v \approx -\frac{R_C}{r_e}$；若誤將 $r_\pi$ 當作 $r_e$ 代入會使答案差距近百倍。
+                        </p>
+                    </div>
+                </div>
+                <div class="pitfall-item">
+                    <div class="pitfall-icon">💡</div>
+                    <div>
+                        <strong style="color: #0284c7; font-size: 1.05rem;">觀念叮嚀：直流工作點對小訊號參數的影響</strong>
+                        <p style="font-size: 0.9rem; color: #475569; margin-top: 4px;">
+                            小訊號參數 $r_\pi$ 與 $g_m$ 並非恆定常數，而是由直流靜態集極電流 $I_{CQ}$ 決定：$g_m = \frac{I_{CQ}}{V_T}$，$r_\pi = \frac{\beta V_T}{I_{CQ}}$。因此若直流偏壓改變，$r_\pi$ 與放大增益亦會隨之改變。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p style="font-weight: 700; color: #e2e8f0; margin-bottom: 8px;">115學年度上學期教育部高優計畫教師實務增能研習 ✕ 電子學專題教學系統</p>
+        <p>本教材由 Antigravity 代理人全自動自主建置 · 支援無失真高解析向量圖與即時互動調參 · <a href="index.html">返回研習首頁</a></p>
+    </footer>
+
+    <!-- Script for Live Gain Calculator -->
+    <script>
+        function updateGain() {
+            const beta = parseFloat(document.getElementById('inputBeta').value);
+            const rpi = parseFloat(document.getElementById('inputRpi').value);
+            const rc = parseFloat(document.getElementById('inputRc').value);
+
+            document.getElementById('valBeta').textContent = beta;
+            document.getElementById('valRpi').textContent = rpi.toFixed(1) + ' kΩ';
+            document.getElementById('valRc').textContent = rc.toFixed(1) + ' kΩ';
+
+            // Av = -(beta * rc) / rpi
+            const av = -(beta * rc) / rpi;
+            document.getElementById('outputAv').textContent = av.toFixed(1);
+
+            // gm = beta / (rpi * 1000) * 1000 = beta / rpi (mA/V)
+            const gm = beta / rpi;
+            document.getElementById('outputGm').textContent = gm.toFixed(2) + ' mA/V';
+
+            // re = (rpi * 1000) / (1 + beta)
+            const re = (rpi * 1000) / (1 + beta);
+            document.getElementById('outputRe').textContent = re.toFixed(2) + ' Ω';
+
+            // 10mV input
+            const vout = (10 * av / 1000);
+            document.getElementById('outputVout').textContent = vout.toFixed(2) + ' V (反相)';
+        }
+        updateGain();
+    </script>
+</body>
+</html>

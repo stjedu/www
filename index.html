@@ -924,13 +924,16 @@
                     <a href="instrument.html" class="nav-link" style="color: #0284c7; font-weight: 700;">🔬 儀表模擬器</a>
                 </div>
                 <div class="nav-item">
-                    <a href="#circuits" class="nav-link">基本電學題庫</a>
+                    <a href="#circuits" class="nav-link">電學與電子學題庫</a>
                 </div>
                 <div class="nav-item">
                     <a href="#solutions" class="nav-link">研習核心教材</a>
                 </div>
                 <div class="nav-item">
                     <a href="slides.pptx" download class="nav-link">投影片下載</a>
+                </div>
+                <div class="nav-item">
+                    <a href="electronics_bjt.html" class="nav-link" style="color: #ea580c; font-weight: 700;">⚡ 電子學 rπ 模組</a>
                 </div>
                 <div class="nav-item">
                     <a href="yolo_webcam_course.html" class="nav-link" style="color: #0d9488; font-weight: 700;">👁️ YOLO 視覺實戰</a>
@@ -1039,12 +1042,12 @@
                     <div class="sol-card-icon">
                         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
                     </div>
-                    <h3 class="sol-card-title">基本電學題庫與標準電路圖</h3>
-                    <p class="sol-card-desc">電機電子群統測命題規格！整數手算設計，搭配 Schemdraw 繪製 IEEE 標準鋸齒電阻與單迴路模型。</p>
+                    <h3 class="sol-card-title">基本電學與電子學互動題庫</h3>
+                    <p class="sol-card-desc">電機電子群統測命題規格！整數手算設計，包含直流電阻分析及 BJT 小訊號 rπ 模型交流放大。</p>
                     <ul class="sol-features">
-                        <li>串並聯化簡 (RT=12Ω, IT=2A)</li>
-                        <li>戴維寧模型 (IL=2.0A)</li>
-                        <li>最大功率轉移曲線 (20W)</li>
+                        <li>基本電學：串並聯化簡、戴維寧模型與最大功率</li>
+                        <li><strong>電子學：共射極小訊號 rπ 模型 (Av = -250)</strong></li>
+                        <li>完整等效電路圖、步驟推導與防呆誘答解析</li>
                     </ul>
                     <a href="#circuits" class="sol-btn">
                         <span>檢視題目與電路圖</span>
@@ -1241,7 +1244,7 @@
             <div class="section-header-row">
                 <div class="sec-title-wrap">
                     <span class="sub-en">INTERACTIVE CIRCUITS</span>
-                    <h2>基本電學互動題庫與標準電路圖</h2>
+                    <h2>基本電學 ✕ 電子學互動題庫與標準電路圖</h2>
                 </div>
                 <p class="sec-desc-lead">
                     點選下方頁籤切換題目，點擊「查看詳解」即可彈出完整公式推導與誘答防呆分析！
@@ -1253,6 +1256,7 @@
                 <button class="circuit-tab active" onclick="switchCircuit(1)">題 01：電阻串並聯化簡與總電流</button>
                 <button class="circuit-tab" onclick="switchCircuit(2)">題 02：戴維寧等效模型與負載分析</button>
                 <button class="circuit-tab" onclick="switchCircuit(3)">題 03：戴維寧最大功率轉移特性</button>
+                <button class="circuit-tab" onclick="switchCircuit(4)" style="border: 2px solid var(--brand-orange); background: #fff8f0; font-weight: 800;">題 04：【電子學】電晶體小訊號放大 (rπ 模型)</button>
             </div>
 
             <!-- 展示卡片 1 -->
@@ -1315,6 +1319,49 @@
                     <button class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.95rem;" onclick="openModal('modal3')">
                         查看完整詳細解析與教學陷阱 &rarr;
                     </button>
+                </div>
+            </div>
+
+            <!-- 展示卡片 4 (電子學 rπ 模型，預設隱藏) -->
+            <div class="circuit-display-card" id="circuit-card-4" style="display: none;">
+                <div class="circuit-img-wrap" style="display: flex; flex-direction: column; gap: 12px;">
+                    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 12px; display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-weight: 700; font-size: 0.85rem; color: #0f172a;">【圖 1】實體放大電路圖 ➔ 【圖 2】交流等效模型</span>
+                        <div style="display: flex; gap: 6px;">
+                            <button onclick="document.getElementById('img-c4-main').src='circuits/circuit4_schematic_ce_amp.png'" style="padding: 3px 10px; font-size: 0.78rem; border-radius: 4px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; font-weight: 600;">實體偏壓電路</button>
+                            <button onclick="document.getElementById('img-c4-main').src='circuits/circuit4_r_pi_model.png'" style="padding: 3px 10px; font-size: 0.78rem; border-radius: 4px; border: 1px solid #d97706; background: #fff8f0; color: #d97706; cursor: pointer; font-weight: 700;">交流 rπ 模型</button>
+                        </div>
+                    </div>
+                    <img id="img-c4-main" src="circuits/circuit4_r_pi_model.png" alt="題04電晶體小訊號r拍模型電路圖" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; transition: all 0.3s;">
+                    <p style="font-size: 0.8rem; color: #64748b; margin: 0; text-align: center;">💡 可點擊上方按鈕切換「實體放大電路」與「交流小訊號 rπ 模型」</p>
+                </div>
+                <div class="circuit-info-box">
+                    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
+                        <span style="background: #e0f2fe; color: #0369a1; font-weight: 800; font-size: 0.8rem; padding: 2px 10px; border-radius: 12px;">
+                            ⚡ 電子學核心單元 · 統測必考題型
+                        </span>
+                        <span style="background: #fef3c7; color: #92400e; font-weight: 700; font-size: 0.8rem; padding: 2px 8px; border-radius: 12px;">
+                            雙電路圖完整對照
+                        </span>
+                    </div>
+                    <span style="color: var(--brand-orange); font-weight: 800; font-size: 0.9rem; display: block;">QUESTION 04</span>
+                    <h3>電晶體小訊號放大器交流分析（rπ 等效模型）</h3>
+                    <p style="color: #475569; margin-bottom: 1rem;">
+                        <strong>【題幹】</strong> 如圖所示為 BJT 共射極 (CE) 放大電路及其交流小訊號 $r_\pi$ 等效模型。已知小訊號輸入電阻 $r_\pi = 1.2\text{ k}\Omega$，共射極交流電流增益 $\beta = 100$（互導 $g_m = \beta / r_\pi = 83.33\text{ mA/V}$），集極負載電阻 $R_C = 3\text{ k}\Omega$。忽略厄利效應 ($r_o \to \infty$)，試求該放大電路之小訊號<strong>交流電壓增益 $A_v = v_o / v_i$</strong>？
+                    </p>
+                    <div class="circuit-detail-list">
+                        <p><strong>標準答案：</strong> (C) Av = −250（反相放大 250 倍）</p>
+                        <p><strong>精確算式：</strong> Av = vo / vi = (−β · ib · RC) / (ib · rπ) = −(100 × 3 kΩ) / 1.2 kΩ = <strong>−250</strong></p>
+                        <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">亦可用互導法：Av = −gm · RC = −(100 / 1.2k) × 3k = <strong>−250</strong></p>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;">
+                        <button class="btn-hero-primary" style="padding: 10px 20px; font-size: 0.92rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);" onclick="openModal('modal4')">
+                            彈出詳細推導與誘答解析 &rarr;
+                        </button>
+                        <a href="electronics_bjt.html" target="_blank" class="btn-hero-secondary" style="padding: 9px 18px; font-size: 0.92rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; border-color: #0284c7; color: #0284c7;">
+                            <span>📖 進入電子學獨立專頁</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1557,6 +1604,58 @@
                 <p>1. 阻抗匹配條件：RL = Rth = <strong>5 Ω</strong></p>
                 <p>2. 最大功率計算：PL(max) = Eth² / (4 × Rth) = 20² / (4 × 5) = 400 / 20 = <strong>20 W</strong></p>
                 <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>誘答陷阱</strong>：分母常忘乘係數 4，易誤選 80 W（選項 B 典型誘答）！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模態詳解視窗 4 (題 04：電子學小訊號 rπ 模型) -->
+    <div class="modal" id="modal4">
+        <div class="modal-box" style="max-width: 820px;">
+            <button class="modal-close" onclick="closeModal('modal4')">&times;</button>
+            <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.5rem;">
+                <span style="background: #e0f2fe; color: #0369a1; font-size: 0.8rem; font-weight: 800; padding: 3px 10px; border-radius: 20px;">電子學單元實測</span>
+                <span style="color: #64748b; font-size: 0.85rem;">雙極性接面電晶體 (BJT) 交流小訊號分析</span>
+            </div>
+            <h2 style="color: var(--brand-orange); margin-bottom: 1rem;">題 04：BJT 共射極小訊號放大器交流分析（rπ 模型）</h2>
+            <p><strong>【題幹】</strong> 如圖所示為 BJT 共射極 (CE) 交流小訊號 $r_\pi$ 等效模型。已知輸入電阻 $r_\pi = 1.2\text{ k}\Omega$，$h_{fe} = \beta = 100$（互導 $g_m = \beta / r_\pi = 83.33\text{ mA/V}$），集極負載電阻 $R_C = 3\text{ k}\Omega$。忽略厄利效應 ($r_o \to \infty$)，求放大器小訊號電壓增益 $A_v = v_o / v_i$？</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 1rem 0;">
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; text-align: center;">
+                    <div style="font-weight: 700; color: #0f172a; font-size: 0.9rem; margin-bottom: 6px;">【圖 A】實體偏壓電路圖</div>
+                    <img src="circuits/circuit4_schematic_ce_amp.png" alt="實體放大電路圖" style="width: 100%; border-radius: 6px; border: 1px solid #cbd5e1;">
+                    <div style="font-size: 0.78rem; color: #64748b; margin-top: 4px;">含直流偏壓 VCC、分壓電阻與交連電容</div>
+                </div>
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; text-align: center;">
+                    <div style="font-weight: 700; color: #d97706; font-size: 0.9rem; margin-bottom: 6px;">【圖 B】交流小訊號 $r_\pi$ 等效模型</div>
+                    <img src="circuits/circuit4_r_pi_model.png" alt="交流小訊號模型" style="width: 100%; border-radius: 6px; border: 1px solid #cbd5e1;">
+                    <div style="font-size: 0.78rem; color: #64748b; margin-top: 4px;">電容短路、VCC 交流接地、化簡為 rπ 與相依源</div>
+                </div>
+            </div>
+            
+            <div style="background: #fff8f0; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--brand-orange); margin-bottom: 1rem;">
+                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem; font-size: 1.05rem;">✔ 正確答案：(C) Av = −250（反相放大 250 倍）</p>
+                <div style="line-height: 1.8; color: #334155;">
+                    <p><strong>【方法一：基極電流分析法 (經典法)】</strong></p>
+                    <p>1. 輸入端由歐姆定律可得輸入訊號：$v_i = v_\pi = i_b \cdot r_\pi = i_b \times 1.2\text{ k}\Omega$</p>
+                    <p>2. 輸出端由相依電流源流入接地，經 $R_C$ 流回，產生反相電壓：$v_o = -(\beta \cdot i_b) \cdot R_C = -(100 \cdot i_b) \times 3\text{ k}\Omega = -300\text{ k}\Omega \cdot i_b$</p>
+                    <p>3. 交流電壓增益：$$A_v = \frac{v_o}{v_i} = \frac{-(\beta \cdot i_b) \cdot R_C}{i_b \cdot r_\pi} = -\frac{\beta \cdot R_C}{r_\pi} = -\frac{100 \times 3\text{ k}\Omega}{1.2\text{ k}\Omega} = \mathbf{-250}$$</p>
+                    
+                    <p style="margin-top: 8px;"><strong>【方法二：互導分析法 (跨導法)】</strong></p>
+                    <p>1. 互導 $g_m = \frac{\beta}{r_\pi} = \frac{100}{1.2\text{ k}\Omega} = \frac{1}{12}\text{ A/V} \approx 83.33\text{ mA/V}$</p>
+                    <p>2. 電壓增益直接速算：$$A_v = -g_m \cdot R_C = -\frac{1}{12} \times 3000 = \mathbf{-250}$$</p>
+                </div>
+            </div>
+
+            <!-- 教學陷阱與防呆分析 -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem 1.25rem;">
+                <h4 style="color: #ea580c; font-size: 0.95rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 6px;">
+                    <span>🚨</span> 技高統測常考陷阱與學生觀念盲點剖析：
+                </h4>
+                <ul style="padding-left: 1.2rem; color: #475569; font-size: 0.88rem; line-height: 1.7;">
+                    <li><strong>負號漏掉（反相特性）</strong>：共射極 (CE) 放大電路具備「輸入正半週、輸出負半週」的 180° 反相特性，學生常因公式只記數值而漏寫負號（誤選 +250）。</li>
+                    <li><strong>$r_\pi$ 與 $r_e$ 混淆</strong>：若題目給射極小訊號電阻 $r_e$，則 $r_e = \frac{r_\pi}{1+\beta} \approx \frac{1.2\text{ k}\Omega}{101} \approx 11.88\,\Omega$。使用 $r_e$ 公式時為 $A_v \approx -\frac{R_C}{r_e} = -\frac{3000}{12} = -250$。學生常把 $r_e$ 代入 $r_\pi$ 位置導致整題算錯。</li>
+                    <li><strong>小訊號模型的交流接地</strong>：直流偏壓電源 $V_{CC}$ 在交流分析時視為虛擬接地，集極負載電阻 $R_C$ 下端實際上接到交流地，因此與集極對地並聯。</li>
+                </ul>
             </div>
         </div>
     </div>
