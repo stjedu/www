@@ -693,7 +693,7 @@
 
                         <!-- Slider 1: beta -->
                         <div class="calc-input-group">
-                            <label>電流放大倍率 β (hfe)：</label>
+                            <label>電流放大倍率 $\beta$ ($h_{fe}$)：</label>
                             <div class="calc-slider-wrap">
                                 <input type="range" id="inputBeta" min="50" max="300" step="10" value="100" oninput="updateGain()">
                                 <div class="calc-val-pill" id="valBeta">100</div>
@@ -702,7 +702,7 @@
 
                         <!-- Slider 2: r_pi -->
                         <div class="calc-input-group">
-                            <label>輸入電阻 rπ (kΩ)：</label>
+                            <label>輸入電阻 $r_\pi$ ($\text{k}\Omega$)：</label>
                             <div class="calc-slider-wrap">
                                 <input type="range" id="inputRpi" min="0.5" max="3.0" step="0.1" value="1.2" oninput="updateGain()">
                                 <div class="calc-val-pill" id="valRpi">1.2 kΩ</div>
@@ -711,31 +711,55 @@
 
                         <!-- Slider 3: RC -->
                         <div class="calc-input-group">
-                            <label>集極負載電阻 RC (kΩ)：</label>
+                            <label>集極負載電阻 $R_C$ ($\text{k}\Omega$)：</label>
                             <div class="calc-slider-wrap">
                                 <input type="range" id="inputRc" min="1.0" max="6.0" step="0.5" value="3.0" oninput="updateGain()">
                                 <div class="calc-val-pill" id="valRc">3.0 kΩ</div>
                             </div>
                         </div>
+
+                        <div style="margin-top: 1.2rem; display: flex; gap: 10px; align-items: center;">
+                            <button onclick="resetBjtPreset()" style="background: rgba(249,115,22,0.18); color: #fdba74; border: 1px solid #f97316; padding: 7px 16px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">
+                                ↺ 還原統測標準題參數 ($\beta=100, r_\pi=1.2\text{k}, R_C=3\text{k}$)
+                            </button>
+                        </div>
                     </div>
 
                     <!-- Right result dashboard -->
                     <div class="result-dashboard">
-                        <div style="font-size: 0.9rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">小訊號電壓增益 (Voltage Gain)</div>
+                        <div style="font-size: 0.9rem; color: #94a3b8; font-weight: 700; text-transform: uppercase;">小訊號電壓增益 (Voltage Gain $A_v$)</div>
                         <div class="res-gain" id="outputAv">-250.0</div>
-                        <div class="res-phase">⚡ 反相相位角 180°（輸出反相放大）</div>
+                        <div class="res-phase">⚡ 反相相位角 180°（輸入正半週 ➔ 輸出負半週）</div>
+
+                        <!-- Live Dual-Channel Waveform Preview -->
+                        <div style="background: #020617; border: 1px solid #334155; border-radius: 10px; padding: 8px 12px; margin: 0.6rem 0 1rem; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; font-size: 0.76rem; font-family: var(--font-code); margin-bottom: 4px;">
+                                <span style="color: #eab308;">● CH1 輸入 $v_i(t)$ (10 mV)</span>
+                                <span style="color: #38bdf8;" id="waveCh2Label">● CH2 輸出 $v_o(t)$ (180° 反相放大)</span>
+                            </div>
+                            <svg viewBox="0 0 360 95" style="width: 100%; height: 85px; display: block;">
+                                <line x1="0" y1="47.5" x2="360" y2="47.5" stroke="#1e293b" stroke-width="1" stroke-dasharray="4,4"/>
+                                <line x1="90" y1="0" x2="90" y2="95" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                                <line x1="180" y1="0" x2="180" y2="95" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                                <line x1="270" y1="0" x2="270" y2="95" stroke="#1e293b" stroke-width="1" stroke-dasharray="3,3"/>
+                                <!-- Input Wave (Yellow, small amplitude, positive first) -->
+                                <path id="svgWaveIn" d="" fill="none" stroke="#eab308" stroke-width="2" stroke-dasharray="4,2"/>
+                                <!-- Output Wave (Cyan, inverted 180 deg, dynamic amplitude) -->
+                                <path id="svgWaveOut" d="" fill="none" stroke="#38bdf8" stroke-width="2.6"/>
+                            </svg>
+                        </div>
                         
-                        <div style="text-align: left; background: rgba(0,0,0,0.25); border-radius: 10px; padding: 1rem; margin-top: 1rem; font-size: 0.88rem;">
+                        <div style="text-align: left; background: rgba(0,0,0,0.25); border-radius: 10px; padding: 1rem; font-size: 0.88rem;">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                                <span style="color: #94a3b8;">計算跨導 gm：</span>
+                                <span style="color: #94a3b8;">計算跨導 $g_m = \beta / r_\pi$：</span>
                                 <span style="color: #38bdf8; font-family: var(--font-code); font-weight: 700;" id="outputGm">83.33 mA/V</span>
                             </div>
                             <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                                <span style="color: #94a3b8;">等效射極電阻 re：</span>
+                                <span style="color: #94a3b8;">等效射極電阻 $r_e = r_\pi / (1+\beta)$：</span>
                                 <span style="color: #38bdf8; font-family: var(--font-code); font-weight: 700;" id="outputRe">11.88 Ω</span>
                             </div>
                             <div style="display: flex; justify-content: space-between;">
-                                <span style="color: #94a3b8;">輸入訊號峰值 10 mV 輸出：</span>
+                                <span style="color: #94a3b8;">輸入峰值 $10\text{ mV}$ 時之輸出峰值：</span>
                                 <span style="color: #f97316; font-family: var(--font-code); font-weight: 700;" id="outputVout">-2.50 V (反相)</span>
                             </div>
                         </div>
@@ -760,7 +784,7 @@
                 <div class="pitfall-item">
                     <div class="pitfall-icon">⚠️</div>
                     <div>
-                        <strong style="color: #ea580c; font-size: 1.05rem;">陷阱二：rπ 與 re 混淆誤代</strong>
+                        <strong style="color: #ea580c; font-size: 1.05rem;">陷阱二：$r_\pi$ 與 $r_e$ 混淆誤代</strong>
                         <p style="font-size: 0.9rem; color: #475569; margin-top: 4px;">
                             $r_\pi$ 為基極看進去的等效阻抗（約數千歐姆），而 $r_e$ 為射極看進去的阻抗（約數十歐姆），兩者相差 $(1+\beta)$ 倍。若題目給予 $r_e$，增益應代公式 $A_v \approx -\frac{R_C}{r_e}$；若誤將 $r_\pi$ 當作 $r_e$ 代入會使答案差距近百倍。
                         </p>
@@ -786,8 +810,20 @@
         <p>本教材由 Antigravity 代理人全自動自主建置 · 支援無失真高解析向量圖與即時互動調參 · <a href="index.html">返回研習首頁</a></p>
     </footer>
 
-    <!-- Script for Live Gain Calculator -->
+    <!-- Script for Live Gain Calculator & Phase Inversion Waveform -->
     <script>
+        function buildSinePath(amp, invert) {
+            const cy = 47.5;
+            const sign = invert ? 1 : -1; // SVG y goes down, so negative y is positive voltage
+            let d = '';
+            for (let x = 0; x <= 360; x += 4) {
+                const rad = (x / 180) * Math.PI * 2; // 2 cycles
+                const y = cy + sign * amp * Math.sin(rad);
+                d += (x === 0 ? 'M ' : ' L ') + x.toFixed(1) + ',' + y.toFixed(2);
+            }
+            return d;
+        }
+
         function updateGain() {
             const beta = parseFloat(document.getElementById('inputBeta').value);
             const rpi = parseFloat(document.getElementById('inputRpi').value);
@@ -801,7 +837,7 @@
             const av = -(beta * rc) / rpi;
             document.getElementById('outputAv').textContent = av.toFixed(1);
 
-            // gm = beta / (rpi * 1000) * 1000 = beta / rpi (mA/V)
+            // gm = beta / rpi (mA/V)
             const gm = beta / rpi;
             document.getElementById('outputGm').textContent = gm.toFixed(2) + ' mA/V';
 
@@ -812,7 +848,24 @@
             // 10mV input
             const vout = (10 * av / 1000);
             document.getElementById('outputVout').textContent = vout.toFixed(2) + ' V (反相)';
+
+            // Update SVG Waveforms (Input fixed small amplitude, Output scaled & inverted)
+            const inPath = document.getElementById('svgWaveIn');
+            const outPath = document.getElementById('svgWaveOut');
+            if (inPath && outPath) {
+                inPath.setAttribute('d', buildSinePath(11, false));
+                const normAmp = Math.min(42, Math.max(14, (Math.abs(av) / 600) * 40 + 12));
+                outPath.setAttribute('d', buildSinePath(normAmp, true));
+            }
         }
+
+        function resetBjtPreset() {
+            document.getElementById('inputBeta').value = 100;
+            document.getElementById('inputRpi').value = 1.2;
+            document.getElementById('inputRc').value = 3.0;
+            updateGain();
+        }
+
         updateGain();
     </script>
 </body>

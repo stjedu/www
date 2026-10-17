@@ -882,6 +882,21 @@
             cursor: pointer;
         }
 
+        .mobile-menu-btn {
+            display: none;
+            background: #fff8f0;
+            border: 1px solid #fed7aa;
+            color: var(--brand-orange);
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            align-items: center;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
         /* 響應式佈局 */
         @media (max-width: 1360px) {
             .header-container { padding: 0 1rem; }
@@ -908,8 +923,28 @@
         @media (max-width: 768px) {
             .solution-grid { grid-template-columns: 1fr; }
             .onestop-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 2.4rem; }
-            .main-nav { display: none; }
+            .hero-title { font-size: 2.2rem; }
+            .header-container { overflow-x: visible; position: relative; }
+            .mobile-menu-btn { display: inline-flex; }
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                align-items: stretch;
+                padding: 1rem 1.5rem 1.5rem;
+                gap: 0.6rem;
+                border-bottom: 2px solid var(--brand-orange);
+                box-shadow: 0 16px 32px rgba(15, 23, 42, 0.12);
+                z-index: 999;
+            }
+            .main-nav.mobile-open { display: flex; }
+            .nav-link { padding: 10px 8px; font-size: 0.95rem; border-bottom: 1px solid #f1f5f9; }
+            .nav-pill-btn { text-align: center; justify-content: center; margin-top: 6px; padding: 10px; }
+            .topbar-container { flex-direction: column; gap: 6px; text-align: center; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
         }
@@ -944,7 +979,12 @@
                 </div>
             </a>
 
-            <nav class="main-nav">
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="開啟導覽選單">
+                <span id="mobile-menu-icon">☰</span>
+                <span style="font-size: 0.85rem;">選單</span>
+            </button>
+
+            <nav class="main-nav" id="main-nav">
                 <div class="nav-item">
                     <a href="instrument.html" class="nav-link" style="color: #0284c7; font-weight: 700;">🔬 儀表模擬器</a>
                 </div>
@@ -1281,7 +1321,7 @@
                 <button class="circuit-tab active" onclick="switchCircuit(1)">題 01：電阻串並聯化簡與總電流</button>
                 <button class="circuit-tab" onclick="switchCircuit(2)">題 02：戴維寧等效模型與負載分析</button>
                 <button class="circuit-tab" onclick="switchCircuit(3)">題 03：戴維寧最大功率轉移特性</button>
-                <button class="circuit-tab" onclick="switchCircuit(4)" style="border: 2px solid var(--brand-orange); background: #fff8f0; font-weight: 800;">題 04：【電子學】電晶體小訊號放大 (rπ 模型)</button>
+                <button class="circuit-tab" onclick="switchCircuit(4)" style="border: 2px solid var(--brand-orange); background: #fff8f0; font-weight: 800;">題 04：【電子學】電晶體小訊號放大 ($r_\pi$ 模型)</button>
             </div>
 
             <!-- 展示卡片 1 -->
@@ -1293,11 +1333,11 @@
                     <span style="color: var(--brand-orange); font-weight: 800; font-size: 0.9rem;">QUESTION 01</span>
                     <h3>電阻串並聯化簡與總電流計算</h3>
                     <p style="color: #475569; margin-bottom: 1rem;">
-                        <strong>【題幹】</strong> 直流電源 E = 24 V。電阻 R₁ = 6 Ω 與 R₂ = 12 Ω 並聯後，再與 R₃ = 8 Ω 串聯。求總電阻 RT 及總電流 IT？
+                        <strong>【題幹】</strong> 直流電源 $E = 24\text{ V}$。電阻 $R_1 = 6\,\Omega$ 與 $R_2 = 12\,\Omega$ 並聯後，再與 $R_3 = 8\,\Omega$ 串聯。求總電阻 $R_T$ 及總電流 $I_T$？
                     </p>
                     <div class="circuit-detail-list">
-                        <p><strong>標準答案：</strong> (A) RT = 12 Ω, IT = 2 A</p>
-                        <p><strong>精確算式：</strong> R₁ // R₂ = 4 Ω ➔ RT = 4 + 8 = 12 Ω ➔ IT = 24 / 12 = 2 A</p>
+                        <p><strong>標準答案：</strong> (A) $R_T = 12\,\Omega,\; I_T = 2\text{ A}$</p>
+                        <p><strong>精確算式：</strong> $R_1 \parallel R_2 = 4\,\Omega \implies R_T = 4 + 8 = 12\,\Omega \implies I_T = \frac{24}{12} = \mathbf{2\text{ A}}$</p>
                     </div>
                     <button class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.95rem;" onclick="openModal('modal1')">
                         查看完整詳細解析與教學陷阱 &rarr;
@@ -1314,11 +1354,11 @@
                     <span style="color: var(--brand-orange); font-weight: 800; font-size: 0.9rem;">QUESTION 02</span>
                     <h3>戴維寧等效模型與負載分析</h3>
                     <p style="color: #475569; margin-bottom: 1rem;">
-                        <strong>【題幹】</strong> 戴維寧等效開路電壓 Eth = 18 V，等效電阻 Rth = 6 Ω。外接負載電阻 RL = 3 Ω，求負載電流 IL？
+                        <strong>【題幹】</strong> 戴維寧等效開路電壓 $E_{th} = 18\text{ V}$，等效電阻 $R_{th} = 6\,\Omega$。外接負載電阻 $R_L = 3\,\Omega$，求負載電流 $I_L$？
                     </p>
                     <div class="circuit-detail-list">
-                        <p><strong>標準答案：</strong> (B) 2.0 A</p>
-                        <p><strong>精確算式：</strong> IL = Eth / (Rth + RL) = 18 / (6 + 3) = 18 / 9 = 2.0 A</p>
+                        <p><strong>標準答案：</strong> (B) $I_L = 2.0\text{ A}$</p>
+                        <p><strong>精確算式：</strong> $I_L = \frac{E_{th}}{R_{th} + R_L} = \frac{18}{6 + 3} = \frac{18}{9} = \mathbf{2.0\text{ A}}$</p>
                     </div>
                     <button class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.95rem;" onclick="openModal('modal2')">
                         查看完整詳細解析與教學陷阱 &rarr;
@@ -1335,11 +1375,11 @@
                     <span style="color: var(--brand-orange); font-weight: 800; font-size: 0.9rem;">QUESTION 03</span>
                     <h3>戴維寧最大功率轉移特性</h3>
                     <p style="color: #475569; margin-bottom: 1rem;">
-                        <strong>【題幹】</strong> 戴維寧模型 Eth = 20 V, Rth = 5 Ω。求使負載 RL 獲得最大功率之條件與最大功率 PL(max)？
+                        <strong>【題幹】</strong> 戴維寧模型 $E_{th} = 20\text{ V},\; R_{th} = 5\,\Omega$。求使負載 $R_L$ 獲得最大功率之條件與最大功率 $P_{L(\max)}$？
                     </p>
                     <div class="circuit-detail-list">
-                        <p><strong>標準答案：</strong> (A) RL = 5 Ω, PL(max) = 20 W</p>
-                        <p><strong>精確算式：</strong> RL = Rth = 5 Ω ➔ PL(max) = Eth² / (4 × Rth) = 400 / 20 = 20 W</p>
+                        <p><strong>標準答案：</strong> (A) $R_L = 5\,\Omega,\; P_{L(\max)} = 20\text{ W}$</p>
+                        <p><strong>精確算式：</strong> $R_L = R_{th} = 5\,\Omega \implies P_{L(\max)} = \frac{E_{th}^2}{4 R_{th}} = \frac{400}{20} = \mathbf{20\text{ W}}$</p>
                     </div>
                     <button class="btn-hero-primary" style="padding: 10px 24px; font-size: 0.95rem;" onclick="openModal('modal3')">
                         查看完整詳細解析與教學陷阱 &rarr;
@@ -1353,12 +1393,12 @@
                     <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 6px 12px; display: flex; justify-content: space-between; align-items: center;">
                         <span style="font-weight: 700; font-size: 0.85rem; color: #0f172a;">【圖 1】實體放大電路圖 ➔ 【圖 2】交流等效模型</span>
                         <div style="display: flex; gap: 6px;">
-                            <button onclick="document.getElementById('img-c4-main').src='circuits/circuit4_schematic_ce_amp.png'" style="padding: 3px 10px; font-size: 0.78rem; border-radius: 4px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; font-weight: 600;">實體偏壓電路</button>
-                            <button onclick="document.getElementById('img-c4-main').src='circuits/circuit4_r_pi_model.png'" style="padding: 3px 10px; font-size: 0.78rem; border-radius: 4px; border: 1px solid #d97706; background: #fff8f0; color: #d97706; cursor: pointer; font-weight: 700;">交流 rπ 模型</button>
+                            <button id="btn-c4-schem" onclick="toggleC4Image('schem')" style="padding: 4px 12px; font-size: 0.78rem; border-radius: 6px; border: 1px solid #cbd5e1; background: #fff; color: #475569; cursor: pointer; font-weight: 600; transition: all 0.2s;">實體偏壓電路</button>
+                            <button id="btn-c4-rpi" onclick="toggleC4Image('rpi')" style="padding: 4px 12px; font-size: 0.78rem; border-radius: 6px; border: 1px solid #d97706; background: #fff8f0; color: #d97706; cursor: pointer; font-weight: 700; transition: all 0.2s;">交流 $r_\pi$ 模型</button>
                         </div>
                     </div>
                     <img id="img-c4-main" src="circuits/circuit4_r_pi_model.png" alt="題04電晶體小訊號r拍模型電路圖" style="width: 100%; border-radius: 8px; border: 1px solid #e2e8f0; transition: all 0.3s;">
-                    <p style="font-size: 0.8rem; color: #64748b; margin: 0; text-align: center;">💡 可點擊上方按鈕切換「實體放大電路」與「交流小訊號 rπ 模型」</p>
+                    <p style="font-size: 0.8rem; color: #64748b; margin: 0; text-align: center;">💡 可點擊上方按鈕切換「實體放大電路」與「交流小訊號 $r_\pi$ 模型」</p>
                 </div>
                 <div class="circuit-info-box">
                     <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;">
@@ -1370,14 +1410,14 @@
                         </span>
                     </div>
                     <span style="color: var(--brand-orange); font-weight: 800; font-size: 0.9rem; display: block;">QUESTION 04</span>
-                    <h3>電晶體小訊號放大器交流分析（rπ 等效模型）</h3>
+                    <h3>電晶體小訊號放大器交流分析（$r_\pi$ 等效模型）</h3>
                     <p style="color: #475569; margin-bottom: 1rem;">
                         <strong>【題幹】</strong> 如圖所示為 BJT 共射極 (CE) 放大電路及其交流小訊號 $r_\pi$ 等效模型。已知小訊號輸入電阻 $r_\pi = 1.2\text{ k}\Omega$，共射極交流電流增益 $\beta = 100$（互導 $g_m = \beta / r_\pi = 83.33\text{ mA/V}$），集極負載電阻 $R_C = 3\text{ k}\Omega$。忽略厄利效應 ($r_o \to \infty$)，試求該放大電路之小訊號<strong>交流電壓增益 $A_v = v_o / v_i$</strong>？
                     </p>
                     <div class="circuit-detail-list">
-                        <p><strong>標準答案：</strong> (C) Av = −250（反相放大 250 倍）</p>
-                        <p><strong>精確算式：</strong> Av = vo / vi = (−β · ib · RC) / (ib · rπ) = −(100 × 3 kΩ) / 1.2 kΩ = <strong>−250</strong></p>
-                        <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">亦可用互導法：Av = −gm · RC = −(100 / 1.2k) × 3k = <strong>−250</strong></p>
+                        <p><strong>標準答案：</strong> (C) $A_v = -250$（反相放大 250 倍）</p>
+                        <p><strong>精確算式：</strong> $A_v = \frac{v_o}{v_i} = \frac{-\beta \cdot i_b \cdot R_C}{i_b \cdot r_\pi} = -\frac{100 \times 3\text{ k}\Omega}{1.2\text{ k}\Omega} = \mathbf{-250}$</p>
+                        <p style="color: #64748b; font-size: 0.88rem; margin-top: 4px;">亦可用互導法：$A_v = -g_m \cdot R_C = -\left(\frac{100}{1.2\text{ k}\Omega}\right) \times 3\text{ k}\Omega = \mathbf{-250}$</p>
                     </div>
                     <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px;">
                         <button class="btn-hero-primary" style="padding: 10px 20px; font-size: 0.92rem; background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);" onclick="openModal('modal4')">
@@ -1549,7 +1589,7 @@
                 <div class="footer-col">
                     <h5>研習教材快速導覽</h5>
                     <ul class="footer-links">
-                        <li><a href="#circuits">基本電學題庫</a></li>
+                        <li><a href="#circuits">基本電學與電子學題庫</a></li>
                         <li><a href="#solutions">九大核心教材</a></li>
                         <li><a href="slides.pptx" download>28 頁旗艦簡報下載</a></li>
                         <li><a href="github_tutorial.html">GitHub 推播教學專頁</a></li>
@@ -1557,12 +1597,12 @@
                 </div>
 
                 <div class="footer-col">
-                    <h5>技術規格支援</h5>
+                    <h5>互動教學專頁</h5>
                     <ul class="footer-links">
-                        <li><a href="javascript:void(0)">Python 3.10+ / Schemdraw</a></li>
-                        <li><a href="javascript:void(0)">Bootstrap 5 / Responsive</a></li>
-                        <li><a href="javascript:void(0)">GitHub REST API v3</a></li>
-                        <li><a href="javascript:void(0)">PAT Classic 資安遮罩規範</a></li>
+                        <li><a href="instrument.html">🔬 雙機虛擬儀表系統</a></li>
+                        <li><a href="electronics_bjt.html">⚡ 電子學 BJT $r_\pi$ 專頁</a></li>
+                        <li><a href="yolo_webcam_course.html">👁️ YOLO11 視覺實戰</a></li>
+                        <li><a href="esp32_mqtt_course.html">🔌 ESP32 物聯網實戰</a></li>
                     </ul>
                 </div>
 
@@ -1589,14 +1629,14 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('modal1')">&times;</button>
             <h2 style="color: var(--brand-orange); margin-bottom: 1rem;">題 01：電阻串並聯化簡與總電流計算</h2>
-            <p><strong>【題幹】</strong> 直流電源 E = 24 V。電阻 R₁ = 6 Ω 與 R₂ = 12 Ω 並聯後，再與 R₃ = 8 Ω 串聯。求總電阻 RT 及總電流 IT？</p>
+            <p><strong>【題幹】</strong> 直流電源 $E = 24\text{ V}$。電阻 $R_1 = 6\,\Omega$ 與 $R_2 = 12\,\Omega$ 並聯後，再與 $R_3 = 8\,\Omega$ 串聯。求總電阻 $R_T$ 及總電流 $I_T$？</p>
             <img src="circuits/circuit1_series_parallel.png" alt="題01電路圖" style="max-width: 100%; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px;">
             <div style="background: #fff8f0; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--brand-orange);">
-                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(A) RT = 12 Ω, IT = 2 A</p>
-                <p>1. 並聯等效電阻：R₁ // R₂ = (6 × 12) / (6 + 12) = 72 / 18 = <strong>4 Ω</strong></p>
-                <p>2. 總等效電阻：RT = 4 + 8 = <strong>12 Ω</strong></p>
-                <p>3. 總電流：IT = E / RT = 24 / 12 = <strong>2 A</strong></p>
-                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>常見盲點</strong>：部分學生易先算 6+12=18 再並聯 8，詳解已清楚標記避免踩雷！</p>
+                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(A) $R_T = 12\,\Omega,\; I_T = 2\text{ A}$</p>
+                <p>1. 並聯等效電阻：$$R_1 \parallel R_2 = \frac{6 \times 12}{6 + 12} = \frac{72}{18} = \mathbf{4\,\Omega}$$</p>
+                <p>2. 總等效電阻：$$R_T = (R_1 \parallel R_2) + R_3 = 4 + 8 = \mathbf{12\,\Omega}$$</p>
+                <p>3. 總電流：$$I_T = \frac{E}{R_T} = \frac{24\text{ V}}{12\,\Omega} = \mathbf{2\text{ A}}$$</p>
+                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>常見盲點</strong>：部分學生易先算 $6+12=18\,\Omega$ 再並聯 $8\,\Omega$，詳解已清楚標記避免踩雷！</p>
             </div>
         </div>
     </div>
@@ -1606,13 +1646,13 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('modal2')">&times;</button>
             <h2 style="color: var(--brand-orange); margin-bottom: 1rem;">題 02：戴維寧等效模型與負載分析</h2>
-            <p><strong>【題幹】</strong> 戴維寧等效開路電壓 Eth = 18 V，等效電阻 Rth = 6 Ω。外接負載電阻 RL = 3 Ω，求負載電流 IL？</p>
+            <p><strong>【題幹】</strong> 戴維寧等效開路電壓 $E_{th} = 18\text{ V}$，等效電阻 $R_{th} = 6\,\Omega$。外接負載電阻 $R_L = 3\,\Omega$，求負載電流 $I_L$？</p>
             <img src="circuits/circuit2_thevenin.png" alt="題02電路圖" style="max-width: 100%; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px;">
             <div style="background: #fff8f0; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--brand-orange);">
-                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(B) 2.0 A</p>
-                <p>1. 單迴路負載電流公式：IL = Eth / (Rth + RL)</p>
-                <p>2. 代入數值：IL = 18 / (6 + 3) = 18 / 9 = <strong>2.0 A</strong></p>
-                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>防呆叮嚀</strong>：求 Rth 時獨立電壓源應「短路 (0V)」，學生常誤當開路！</p>
+                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(B) $I_L = 2.0\text{ A}$</p>
+                <p>1. 單迴路負載電流公式：$$I_L = \frac{E_{th}}{R_{th} + R_L}$$</p>
+                <p>2. 代入數值：$$I_L = \frac{18\text{ V}}{6\,\Omega + 3\,\Omega} = \frac{18}{9} = \mathbf{2.0\text{ A}}$$</p>
+                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>防呆叮嚀</strong>：求 $R_{th}$ 時獨立電壓源應「短路 ($0\text{ V}$)」，學生常誤當開路！</p>
             </div>
         </div>
     </div>
@@ -1622,13 +1662,13 @@
         <div class="modal-box">
             <button class="modal-close" onclick="closeModal('modal3')">&times;</button>
             <h2 style="color: var(--brand-orange); margin-bottom: 1rem;">題 03：戴維寧最大功率轉移特性</h2>
-            <p><strong>【題幹】</strong> 戴維寧模型 Eth = 20 V, Rth = 5 Ω。求使負載 RL 獲得最大功率之條件與最大功率 PL(max)？</p>
+            <p><strong>【題幹】</strong> 戴維寧模型 $E_{th} = 20\text{ V},\; R_{th} = 5\,\Omega$。求使負載 $R_L$ 獲得最大功率之條件與最大功率 $P_{L(\max)}$？</p>
             <img src="circuits/circuit3_max_power.png" alt="題03曲線圖" style="max-width: 100%; margin: 1rem 0; border: 1px solid #e2e8f0; border-radius: 8px;">
             <div style="background: #fff8f0; padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--brand-orange);">
-                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(A) RL = 5 Ω, PL(max) = 20 W</p>
-                <p>1. 阻抗匹配條件：RL = Rth = <strong>5 Ω</strong></p>
-                <p>2. 最大功率計算：PL(max) = Eth² / (4 × Rth) = 20² / (4 × 5) = 400 / 20 = <strong>20 W</strong></p>
-                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>誘答陷阱</strong>：分母常忘乘係數 4，易誤選 80 W（選項 B 典型誘答）！</p>
+                <p style="font-weight: bold; color: var(--brand-orange); margin-bottom: 0.5rem;">✔ 正確答案：(A) $R_L = 5\,\Omega,\; P_{L(\max)} = 20\text{ W}$</p>
+                <p>1. 阻抗匹配條件：$$R_L = R_{th} = \mathbf{5\,\Omega}$$</p>
+                <p>2. 最大功率計算：$$P_{L(\max)} = \frac{E_{th}^2}{4 R_{th}} = \frac{20^2}{4 \times 5} = \frac{400}{20} = \mathbf{20\text{ W}}$$</p>
+                <p style="color: #ea580c; font-size: 0.9rem; margin-top: 0.5rem;">🚨 <strong>誘答陷阱</strong>：分母常忘乘係數 $4$，易誤選 $80\text{ W}$（選項 B 典型誘答）！</p>
             </div>
         </div>
     </div>
@@ -2132,6 +2172,15 @@ if (window.API && window.API.LMSSetValue) {
 
     <!-- 腳本控制 -->
     <script>
+        // 手機版導覽選單切換
+        function toggleMobileNav() {
+            var nav = document.getElementById('main-nav');
+            var icon = document.getElementById('mobile-menu-icon');
+            if (!nav) return;
+            var isOpen = nav.classList.toggle('mobile-open');
+            if (icon) icon.textContent = isOpen ? '✕' : '☰';
+        }
+
         // 電路圖頁籤切換
         function switchCircuit(num) {
             document.querySelectorAll('.circuit-tab').forEach((tab, idx) => {
@@ -2142,13 +2191,63 @@ if (window.API && window.API.LMSSetValue) {
             });
         }
 
+        // 題 04 雙電路圖切換與按鈕高亮狀態同步
+        function toggleC4Image(mode) {
+            var img = document.getElementById('img-c4-main');
+            var btnSchem = document.getElementById('btn-c4-schem');
+            var btnRpi = document.getElementById('btn-c4-rpi');
+            if (!img) return;
+            if (mode === 'schem') {
+                img.src = 'circuits/circuit4_schematic_ce_amp.png';
+                if (btnSchem) {
+                    btnSchem.style.borderColor = '#d97706';
+                    btnSchem.style.background = '#fff8f0';
+                    btnSchem.style.color = '#d97706';
+                    btnSchem.style.fontWeight = '700';
+                }
+                if (btnRpi) {
+                    btnRpi.style.borderColor = '#cbd5e1';
+                    btnRpi.style.background = '#fff';
+                    btnRpi.style.color = '#475569';
+                    btnRpi.style.fontWeight = '600';
+                }
+            } else {
+                img.src = 'circuits/circuit4_r_pi_model.png';
+                if (btnRpi) {
+                    btnRpi.style.borderColor = '#d97706';
+                    btnRpi.style.background = '#fff8f0';
+                    btnRpi.style.color = '#d97706';
+                    btnRpi.style.fontWeight = '700';
+                }
+                if (btnSchem) {
+                    btnSchem.style.borderColor = '#cbd5e1';
+                    btnSchem.style.background = '#fff';
+                    btnSchem.style.color = '#475569';
+                    btnSchem.style.fontWeight = '600';
+                }
+            }
+        }
+
         // 彈窗控制
         function openModal(id) {
-            document.getElementById(id).classList.add('active');
+            var el = document.getElementById(id);
+            if (el) el.classList.add('active');
         }
         function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
+            var el = document.getElementById(id);
+            if (el) el.classList.remove('active');
         }
+
+        // 支援鍵盤 Esc 鍵快速關閉彈窗
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(function(m) {
+                    m.classList.remove('active');
+                });
+                var v = document.getElementById('microVideoPlayer');
+                if (v) { v.pause(); }
+            }
+        });
 
         // 影片彈窗控制
         function openVideoModal() {

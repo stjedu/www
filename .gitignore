@@ -1,7 +1,19 @@
+# Temporary & Archive Directories
 _temp_*
-*.mp4
-*.mp3
-*.zip
+_archive_workspace/
 __pycache__/
 rendered_slides/
+video_output/
+
+# Privacy & Copyright Protection (Never commit student records or full textbooks)
+*忠二乙*
+*成績處理*
+*課本PDF*
+*習作本詳解*
+*測驗卷詳解*
+
+# Office Temp Files & Media
 ~$*
+*.mp3
+*.zip
+circuits/test_*.png
