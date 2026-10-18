@@ -949,7 +949,7 @@
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
-    <link rel="stylesheet" href="redesign.css?v=20261018-banner">
+    <link rel="stylesheet" href="redesign.css?v=20261018-downloadmenu">
 </head>
 <body>
 <a class="skip-link" href="#solutions">跳至研習教材</a>
@@ -979,7 +979,7 @@
             </button>
 
             <nav class="main-nav" id="main-nav" aria-label="主要導覽">
-<a href="#solutions" class="nav-link">研習教材</a><a href="#circuits" class="nav-link">電學題庫</a><a href="instrument.html" class="nav-link">儀表實驗室</a><a href="#faq" class="nav-link">常見問題</a><a href="#slides" class="nav-pill-btn">下載研習簡報 ↗</a></nav>
+<a href="#solutions" class="nav-link">研習教材</a><a href="#circuits" class="nav-link">電學題庫</a><a href="instrument.html" class="nav-link">儀表實驗室</a><a href="#faq" class="nav-link">常見問題</a><details class="download-menu" id="download-menu"><summary class="nav-pill-btn">下載研習簡報 <span aria-hidden="true">⌄</span></summary><div class="download-options"><div class="download-menu-title">選擇簡報風格 · 各 28 頁</div><a href="slides.pptx" download="Antigravity_教學應用研習_原始版.pptx"><span>原始版</span><small>0.9 MB ↓</small></a><a href="presentations/academic.pptx" download="Antigravity_教學應用研習_現代學術風.pptx"><span>現代學術風</span><small>2.3 MB ↓</small></a><a href="presentations/tech.pptx" download="Antigravity_教學應用研習_科技風版.pptx"><span>深色科技風</span><small>26.9 MB ↓</small></a><a href="presentations/light-tech.pptx" download="Antigravity_教學應用研習_白底科技版_電路修正版.pptx"><span>白底科技風</span><small>3.3 MB ↓</small></a><a href="presentations/future.pptx" download="Antigravity_教學應用研習_未來實驗室風.pptx"><span>未來實驗室風</span><small>3.3 MB ↓</small></a><a href="presentations/japanese.pptx" download="Antigravity_教學應用研習_日系教學插畫風.pptx"><span>日系教學插畫風</span><small>3.9 MB ↓</small></a><a href="#slides" class="download-compare">比較所有風格 <span>→</span></a></div></details></nav>
         </div>
     </header>
 
@@ -2237,6 +2237,12 @@ const deckStyles=[{"key": "original", "name": "原始版", "desc": "保留原始
 const deckStyleSelect=document.getElementById('deck-style'),deckPageSelect=document.getElementById('deck-page');
 function updateDeckComparison(){const key=deckStyleSelect.value,page=deckPageSelect.value;const style=deckStyles.find(x=>x.key===key);if(!style)return;const before=document.getElementById('deck-before'),after=document.getElementById('deck-after');before.src='slide-previews/original-'+page+'.webp';before.alt='原始版第 '+Number(page)+' 頁';after.src='slide-previews/'+key+'-'+page+'.webp';after.alt=style.name+'第 '+Number(page)+' 頁';document.getElementById('deck-after-label').textContent=style.name;}
 deckStyleSelect.addEventListener('change',updateDeckComparison);deckPageSelect.addEventListener('change',updateDeckComparison);
+</script>
+<script>
+const downloadMenu=document.getElementById('download-menu');
+document.addEventListener('click',function(event){if(downloadMenu.open&&!downloadMenu.contains(event.target))downloadMenu.open=false;});
+document.addEventListener('keydown',function(event){if(event.key==='Escape'&&downloadMenu.open){downloadMenu.open=false;downloadMenu.querySelector('summary').focus();}});
+downloadMenu.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){downloadMenu.open=false;const nav=document.getElementById('main-nav');if(nav.classList.contains('mobile-open'))toggleMobileNav();});});
 </script>
 </body>
 </html>
