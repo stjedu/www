@@ -949,8 +949,10 @@
             .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
+    <link rel="stylesheet" href="redesign.css">
 </head>
 <body>
+<a class="skip-link" href="#solutions">跳至研習教材</a>
 
     <!-- 01 頂部資訊列 -->
     <div class="site-topbar">
@@ -974,107 +976,51 @@
             <a href="#" class="site-logo">
                 <div class="logo-symbol">高優</div>
                 <div class="logo-text">
-                    <span class="logo-brand">115學年上高優計畫教師實務增能研習</span>
-                    <span class="logo-sub">AI AGENT EMPOWERED TEACHING</span>
+                    <span class="logo-brand">高優計畫・教師實務增能</span>
+                    <span class="logo-sub">TEACHING × TECHNOLOGY</span>
                 </div>
             </a>
 
-            <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="開啟導覽選單">
+            <button class="mobile-menu-btn" onclick="toggleMobileNav()" aria-label="開啟導覽選單" aria-controls="main-nav" aria-expanded="false">
                 <span id="mobile-menu-icon">☰</span>
                 <span style="font-size: 0.85rem;">選單</span>
             </button>
 
-            <nav class="main-nav" id="main-nav">
-                <div class="nav-item">
-                    <a href="instrument.html" class="nav-link" style="color: #0284c7; font-weight: 700;">🔬 儀表模擬器</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#circuits" class="nav-link">電學與電子學題庫</a>
-                </div>
-                <div class="nav-item">
-                    <a href="#solutions" class="nav-link">研習核心教材</a>
-                </div>
-                <div class="nav-item">
-                    <a href="slides.pptx" download class="nav-link">投影片下載</a>
-                </div>
-                <div class="nav-item">
-                    <a href="electronics_bjt.html" class="nav-link" style="color: #ea580c; font-weight: 700;">⚡ 電子學 rπ 模組</a>
-                </div>
-                <div class="nav-item">
-                    <a href="yolo_webcam_course.html" class="nav-link" style="color: #0d9488; font-weight: 700;">👁️ YOLO 視覺實戰</a>
-                </div>
-                <div class="nav-item">
-                    <a href="esp32_mqtt_course.html" class="nav-link" style="color: #0284c7; font-weight: 700;">🔌 ESP32 物聯網</a>
-                </div>
-                <div class="nav-item">
-                    <a href="github_tutorial.html" class="nav-link" style="color: var(--brand-orange);">GitHub 發布 SOP</a>
-                </div>
-                <a href="javascript:void(0)" onclick="copyURL()" class="nav-pill-btn">🔗 複製本頁網址</a>
-            </nav>
+            <nav class="main-nav" id="main-nav" aria-label="主要導覽">
+<a href="#solutions" class="nav-link">研習教材</a><a href="#circuits" class="nav-link">電學題庫</a><a href="instrument.html" class="nav-link">儀表實驗室</a><a href="#faq" class="nav-link">常見問題</a><a href="slides.pptx" download class="nav-pill-btn">下載研習簡報 ↗</a></nav>
         </div>
     </header>
 
     <!-- 03 科技首頁 HERO SECTION (橘野深黑 ✕ 橘金高質感) -->
     <section class="hero-section">
-        <div class="hero-bg-glow"></div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-eyebrow">
-                    <span>⚡ AI 代理人全自動出題與雲端發布一體化</span>
-                </div>
-                <h1 class="hero-title">
-                    <span class="accent">啟</span>發教學新思維<br>
-                    <span class="accent">引</span>領 AI 新未來
-                    <span class="tech-en">INNOVATIVE TEACHING · EMPOWER THE FUTURE</span>
-                </h1>
-                <p class="hero-desc">
-                    技術型高中電機電子群專屬！結合 Google Antigravity 代理人架構，完全突破傳統問答局限，實現「自然語言出題 ➔ 閉迴路標準電路圖繪製 ➔ 現代化網頁轉型 ➔ GitHub Pages 終身免費推播」一站式落地！
-                </p>
-                <div class="hero-cta-group">
-                    <a href="instrument.html" class="btn-hero-primary" style="background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);">
-                        <span>🔬 開啟示波器/信號產生器互動系統 &rarr;</span>
-                    </a>
-                    <a href="slides.pptx" download class="btn-hero-secondary">
-                        <span>📥 下載 28 頁研習簡報 (大字動畫版)</span>
-                    </a>
-                </div>
-            </div>
-
-            <!-- 右側即時狀態監控卡 -->
-            <div class="hero-dashboard">
-                <div class="dash-header">
-                    <div class="dash-status">
-                        <span class="dash-dot"></span>
-                        <span>GitHub Pages 服務運行中 (HTTP 200)</span>
-                    </div>
-                    <span style="font-size: 0.8rem; color: #94a3b8;">Main Branch</span>
-                </div>
-                <div class="dash-metric-grid" style="grid-template-columns: repeat(2, 1fr); gap: 1rem;">
-                    <div class="metric-box">
-                        <div class="metric-num">09<span style="font-size: 1.1rem; color: #cbd5e1;"> 大</span></div>
-                        <div class="metric-label">研習核心實戰模組</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num">04<span style="font-size: 1.1rem; color: #cbd5e1;"> 套</span></div>
-                        <div class="metric-label">互動教學專題系統</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num">28<span style="font-size: 1.1rem; color: #cbd5e1;"> 頁</span></div>
-                        <div class="metric-label">高質感教學簡報 PPTX</div>
-                    </div>
-                    <div class="metric-box">
-                        <div class="metric-num">100<span style="font-size: 1.1rem; color: #cbd5e1;">%</span></div>
-                        <div class="metric-label">代理人全自動落地</div>
-                    </div>
-                </div>
-                <div class="dash-chain">
-                    <div class="chain-step ok">✔ 代理人自主驗證：Git 遠端身分驗證完成</div>
-                    <div class="chain-step ok">✔ 智慧資安保護：PAT 金鑰全自動遮罩處理</div>
-                    <div class="chain-step ok">✔ 網址：https://stjedu.github.io/www/</div>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="hero-container">
+<div class="hero-content">
+<div class="hero-eyebrow"><span></span> 115 學年上・教師實務增能研習</div>
+<h1 class="hero-title">讓教學靈感，<br>成為<span class="accent">可操作的實作。</span></h1>
+<p class="hero-desc">從 AI 備課、電學題庫到智慧物聯網。<br>為電機電子群教師打造的互動教學資源，<br class="desktop-break">把課堂知識，連接到每一次動手實作。</p>
+<div class="hero-cta-group"><a href="#solutions" class="btn-hero-primary">探索研習教材 <span>↗</span></a><a href="instrument.html" class="btn-hero-secondary">開啟儀表實驗室 <span>→</span></a></div>
+<div class="hero-topics"><span>AI 代理應用</span><span>電學互動</span><span>YOLO 視覺</span><span>ESP32 × MQTT</span></div>
+</div>
+<div class="lab-visual" aria-label="電子教學實驗室示意圖">
+<div class="lab-top"><span><i></i> INTERACTIVE TEACHING LAB</span><span>LAB / 01</span></div>
+<div class="lab-heading"><span>把抽象知識，變得具體。</span><small>EXPLORE · CONNECT · CREATE</small></div>
+<svg class="lab-svg" viewBox="0 0 560 275" role="img" aria-label="電路連接、示波器與正弦波形的教學示意，非即時量測">
+<defs><pattern id="labgrid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M 24 0 L 0 0 0 24" fill="none" stroke="#244354" stroke-width=".7"/></pattern></defs>
+<rect x="0" y="0" width="560" height="275" fill="url(#labgrid)"/>
+<g fill="none" stroke="#507180" stroke-width="2"><path d="M35 82H90m70 0h45v115H35V82"/><path d="M90 82l7-10 10 20 10-20 10 20 10-20 10 20 13-10"/><circle cx="35" cy="143" r="20" fill="#112b3c"/><path d="M26 143h18m-9-9v18M120 197v27m-14 0h28m-23 6h18m-13 6h8"/><path d="M205 100h43v45h26" stroke="#edaa67"/><circle cx="205" cy="100" r="4" fill="#edaa67"/></g>
+<text x="112" y="55" fill="#a6c7d5" font-size="13" font-family="monospace">R / KNOWLEDGE</text><text x="12" y="42" fill="#eab27d" font-size="11" font-family="monospace">INPUT</text>
+<rect x="274" y="36" width="260" height="198" rx="14" fill="#193849" stroke="#456170"/>
+<rect x="290" y="67" width="185" height="132" rx="5" fill="#0b202f" stroke="#325260"/>
+<g stroke="#284453" stroke-width="1"><path d="M290 100h185M290 133h185M290 166h185M327 67v132M364 67v132M401 67v132M438 67v132"/></g>
+<path d="M292 133 C307 133 307 91 323 91 S339 175 355 175 S371 91 387 91 S403 175 419 175 S435 91 451 91 S467 133 474 133" fill="none" stroke="#f1af72" stroke-width="3"/>
+<text x="290" y="55" fill="#c7dae2" font-size="10" font-family="monospace">OSCILLOSCOPE / LEARNING VIEW</text><g fill="#98b9c8"><circle cx="502" cy="91" r="10"/><circle cx="502" cy="128" r="10"/></g><circle cx="502" cy="168" r="10" fill="#e6a76c"/>
+<text x="291" y="218" fill="#b6ced9" font-size="11" font-family="monospace">CH 1</text><text x="414" y="218" fill="#efb174" font-size="11" font-family="monospace">SINE WAVE</text>
+</svg>
+<div class="lab-bottom"><span>01 電路理解</span><b>→</b><span>02 互動探索</span><b>→</b><span>03 課堂應用</span></div>
+<div class="lab-caption">電子教學視覺示意 · 非即時量測畫面</div>
+</div></div>
+<div class="resource-summary"><div><strong>09</strong><span>核心教材模組</span></div><div><strong>04</strong><span>互動教學專題</span></div><div><strong>28</strong><span>頁研習簡報</span></div><a href="github_tutorial.html"><span>從教室到雲端<br><b>GitHub 發布教學</b></span><em>↗</em></a></div>
+</section>
 
     <!-- 04 標語跑馬廊 BRANDMARK STRIP -->
     <div class="brandmark-strip">
@@ -1165,11 +1111,11 @@
                         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
                     </div>
                     <h3 class="sol-card-title">GitHub 免費網站推播 SOP</h3>
-                    <p class="sol-card-desc">完整記錄開立帳號、建立倉庫、PAT 金鑰產生（馬賽克資安遮罩）與代理人推播提示詞咒語！</p>
+                    <p class="sol-card-desc">帶老師從帳號與網址規劃、建立倉庫、上傳首頁到啟用 GitHub Pages，完成自己的教學小站。</p>
                     <ul class="sol-features">
-                        <li>步驟一～五按圖索驥詳細指引</li>
-                        <li>Token 金鑰嚴格馬賽克保護</li>
-                        <li>附複製即用實戰提示詞 06</li>
+                        <li>六步驟操作與完成檢查點</li>
+                        <li>區分個人首頁與專案網站</li>
+                        <li>附教師首頁範本與 60 分鐘帶課建議</li>
                     </ul>
                     <a href="github_tutorial.html" class="sol-btn">
                         <span>閱讀圖文教學專頁 📖</span>
@@ -1447,7 +1393,7 @@
 
             <!-- 儀表模擬器功能導覽與快速進入卡片 -->
             <div style="background: #ffffff; border-radius: 20px; border: 1px solid var(--border-light); padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.06); margin-bottom: 2rem;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;">
+                <div class="instrument-layout">
                     <div>
                         <div style="display: inline-block; background: #e0f2fe; color: #0369a1; font-weight: 800; font-size: 0.85rem; padding: 4px 12px; border-radius: 20px; margin-bottom: 12px;">
                             ✨ 研習第七單元旗艦級成果展示
@@ -1493,7 +1439,7 @@
                             <span style="font-size: 0.75rem; color: #94a3b8; font-family: monospace;">instrument.html (即時互動模擬視窗)</span>
                             <a href="instrument.html" target="_blank" style="color: #38bdf8; font-size: 0.75rem; text-decoration: none;">⛶ 放大</a>
                         </div>
-                        <iframe src="instrument.html" style="width: 100%; height: 500px; border: none; display: block;" title="虛擬電子儀表互動系統"></iframe>
+                        <iframe loading="lazy" src="instrument.html" style="width: 100%; height: 500px; border: none; display: block;" title="虛擬電子儀表互動系統"></iframe>
                     </div>
                 </div>
             </div>
@@ -1545,7 +1491,7 @@
                         <span>▾</span>
                     </summary>
                     <div class="faq-answer">
-                        請參考教學專頁【<a href="github_tutorial.html" style="color: var(--brand-orange); font-weight: bold;">GitHub 發布教學專頁</a>】，註冊您的專屬帳號（例如 teacher-chen），建立名為 `www` 的倉庫並取得金鑰後，將提示語 06 提供給 Antigravity，代理人即會為您全自動生成並推播上線！
+                        請參考教學專頁【<a href="github_tutorial.html" style="color: var(--brand-orange); font-weight: bold;">GitHub 發布教學專頁</a>】，依六步驟建立倉庫、下載首頁範本、上傳 index.html 並啟用 Pages。個人首頁使用「帳號.github.io」倉庫；專案網站可使用 www 倉庫。
                     </div>
                 </details>
 
@@ -1619,7 +1565,7 @@
 
             <div class="footer-bottom">
                 <div>© 2026 115學年上高優計畫教師實務增能研習. All Rights Reserved.</div>
-                <div>設計風格靈感源自 橘野數位 GEYES 現代科技風格</div>
+                <div>電機電子群 · 互動教學資源</div>
             </div>
         </div>
     </footer>
@@ -2178,6 +2124,7 @@ if (window.API && window.API.LMSSetValue) {
             var icon = document.getElementById('mobile-menu-icon');
             if (!nav) return;
             var isOpen = nav.classList.toggle('mobile-open');
+            document.querySelector('.mobile-menu-btn').setAttribute('aria-expanded', String(isOpen));
             if (icon) icon.textContent = isOpen ? '✕' : '☰';
         }
 
