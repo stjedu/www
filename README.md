@@ -27,6 +27,7 @@
 | **05** | **ESP32 ✕ MQTT 雲端智慧物聯網** | [`esp32_mqtt_course.html`](./esp32_mqtt_course.html) | 涵蓋 I2C 總線共用（BME280 + OLED）、四鍵多功能碼表、mqttgo.io 跨網遙控與硬體安全除錯金句。 |
 | **06** | **GitHub Pages 發布教學 SOP** | [`github_tutorial.html`](./github_tutorial.html) | 圖解 Antigravity 代理人免指令自動化推送與 GitHub Pages 靜態網站發布全流程。 |
 | **07** | **AI 成績正規化與學情儀表板** | [`grades.html`](./grades.html) | 展示手寫成績單自動正規化、加權平均計算、不及格預警標記與常態分佈視覺化圖表。 |
+| **08** | **電子學動畫影音教學** | [`electronics_videos.html`](./electronics_videos.html) | 第2章二極體與應用、第3章BJT，共19集；含章節選片、關鍵字搜尋、播放進度與繁體字幕下載。 |
 
 ---
 

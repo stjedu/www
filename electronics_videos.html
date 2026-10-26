@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>電子學動畫影音教學｜簡老師的教學資源</title>
+<meta name="description" content="電子學19集動畫教學：半導體、PN接面、稽納與發光二極體、整流濾波、BJT構造及特性曲線。台灣女聲、繁體字幕、分步解題與學生練習。">
+<link rel="icon" href="data:,">
+<style>
+:root{color-scheme:light;--ink:#183b4d;--muted:#526b76;--accent:#a44e2b;--line:#d0ddda;--paper:#f5f7f3;--blue:#155f92}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;line-height:1.7}a{color:var(--blue)}button,input{font:inherit}button,a,input{touch-action:manipulation}:focus-visible{outline:3px solid #b4562d;outline-offset:4px}.skip{position:absolute;top:-100px;left:20px;background:white;padding:12px;z-index:10}.skip:focus{top:10px}.top{background:#102e40;color:#eff7f5}.top-inner{max-width:1400px;margin:auto;padding:18px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-size:16px;font-weight:700;color:inherit;text-decoration:none;letter-spacing:1px}.top nav{display:flex;gap:22px;flex-wrap:wrap}.top nav a{font-size:14px;color:#e1eeeb;text-decoration:none}.intro{max-width:1400px;margin:auto;padding:46px 30px 26px}.eyebrow{font-size:12px;letter-spacing:2px;color:var(--accent);font-weight:700}.intro h1{font-size:clamp(30px,4vw,44px);margin:9px 0 12px;line-height:1.4}.intro p{max-width:900px;margin:0;color:var(--muted);font-size:16px}.stats{display:flex;gap:10px;margin-top:21px;flex-wrap:wrap}.stats span{font-size:13px;padding:5px 12px;background:#e8eeea;border:1px solid var(--line);border-radius:4px}.layout{max-width:1400px;padding:0 30px 60px;margin:auto;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(330px,1fr);gap:28px;align-items:start}.player-panel{position:sticky;top:22px;min-width:0}.screen{aspect-ratio:16/9;position:relative;background:#0e2230;border-radius:10px 10px 0 0;overflow:hidden}.screen video,.screen iframe{width:100%;height:100%;display:block;border:0}.screen[hidden],video[hidden],iframe[hidden]{display:none}.player-info{background:#fff;border:1px solid var(--line);border-top:0;padding:23px;border-radius:0 0 10px 10px}.lesson-meta{font-size:13px;color:var(--accent);font-weight:700}h2{font-size:24px;line-height:1.5;margin:8px 0 13px;overflow-wrap:anywhere}.description{font-size:14px;color:var(--muted);margin:0 0 18px}.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.actions button,.actions a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;border:1px solid #c2d2d1;background:#fff;color:var(--ink);border-radius:5px;text-decoration:none;padding:8px 14px;font-size:14px;cursor:pointer}.actions button:disabled{opacity:.45;cursor:default}.actions .primary{background:#173d50;color:#fff;border-color:#173d50}.autoplay{display:flex;gap:8px;align-items:center;font-size:14px;margin-top:18px}.autoplay input{width:18px;height:18px;accent-color:#155f92}.player-note{font-size:12px;color:var(--muted);margin:17px 0 0}.catalog{border:1px solid var(--line);background:white;border-radius:10px;overflow:hidden}.catalog-head{padding:21px;border-bottom:1px solid var(--line)}.catalog-head h2{font-size:21px;margin:0 0 13px}.search-label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}#search{width:100%;padding:11px 12px;border:1px solid #aebfbd;border-radius:5px;background:#fcfdfb;color:var(--ink)}.filters{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}.filters button{padding:6px 12px;border:1px solid #becfcb;border-radius:4px;background:white;font-size:13px;color:var(--ink);cursor:pointer}.filters button[aria-pressed=true]{background:#173d50;border-color:#173d50;color:#fff}.result{font-size:12px;color:var(--muted);margin:12px 0 0}.lesson-group{padding:18px 15px 5px}.lesson-group h3{font-size:14px;font-weight:700;margin:0 6px 9px;color:#526b76}.lesson-group ol{list-style:none;padding:0;margin:0}.lesson{display:grid;grid-template-columns:53px minmax(0,1fr) 39px;align-items:center;text-align:left;width:100%;gap:10px;border:1px solid transparent;background:white;padding:13px 10px;border-radius:5px;color:var(--ink);font-size:14px;cursor:pointer;line-height:1.5}.lesson:hover{background:#f0f4f0}.lesson[aria-current=true]{background:#e9f2ef;border-color:#93b3a8;color:#173d50;font-weight:700}.episode-code{font-size:12px;color:#7b492c;font-variant-numeric:tabular-nums}.lesson small{color:var(--muted);font-size:12px;text-align:right;font-variant-numeric:tabular-nums}.empty{padding:25px;color:var(--muted)}footer{border-top:1px solid var(--line);text-align:center;padding:24px;color:var(--muted);font-size:12px}#play-error{font-size:14px;color:#8f301e;margin-top:16px}#play-error[hidden]{display:none}@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1.3fr) minmax(300px,1fr);gap:18px}.layout,.intro{padding-left:22px;padding-right:22px}}@media(max-width:780px){.layout{grid-template-columns:1fr}.player-panel{position:static}.intro{padding-top:30px}.top-inner{padding:16px 22px;align-items:flex-start;flex-direction:column;gap:8px}.top nav{gap:18px}.player-info{padding:19px}.catalog-head{padding:19px}h2{font-size:22px}.lesson-group{padding:16px 12px 4px}}@media(prefers-reduced-motion:no-preference){button,a{transition:background-color .15s}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">跳到影片播放器</a>
+<header class="top"><div class="top-inner"><a class="brand" href="index.html">簡老師・AI × 電學 × 智慧教學</a><nav aria-label="頁面導覽"><a href="index.html">回網站首頁</a><a href="electronics_bjt.html">BJT 互動教材 ↗</a></nav></div></header>
+<section class="intro"><div class="eyebrow">ELECTRONICS / ANIMATED LESSONS</div><h1>電子學，跟著動畫一步一步學。</h1><p>從半導體到電晶體：先理解原理，再跟著例題列式，最後暫停影片自己練習。依課本節次選片，也可以搜尋想複習的主題。</p><div class="stats"><span>19 集動畫教學</span><span>約 197 分鐘</span><span>台灣女聲・繁體字幕</span><span>更新至 3-2 特性曲線</span></div></section>
+<main class="layout" id="main">
+<section class="player-panel" aria-labelledby="lesson-title">
+<div class="screen"><video id="player" controls playsinline preload="metadata" aria-label="電子學教學影片"></video><iframe id="youtube" title="電子學YouTube教學影片" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen hidden></iframe></div>
+<div class="player-info"><div class="lesson-meta" id="lesson-meta"></div><h2 id="lesson-title"></h2><p class="description" id="lesson-description"></p>
+<div class="actions"><button id="previous" type="button">← 上一集</button><button id="next" type="button" class="primary">下一集 →</button><a id="open-video" href="#">另開影片 ↗</a><a id="download-srt" href="#" download>下載 SRT 字幕</a></div>
+<label class="autoplay" id="autoplay-label"><input type="checkbox" id="autoplay">本集結束後播放下一集</label>
+<p class="player-note" id="player-note">影片已附繁體字幕；同一瀏覽器會記住各集觀看進度。</p><p id="play-error" role="status" hidden>影片暫時無法載入，請使用「另開影片」或稍後重新整理。</p></div>
+</section>
+<aside class="catalog" aria-labelledby="catalog-title"><div class="catalog-head"><h2 id="catalog-title">課程目錄</h2><label class="search-label" for="search">搜尋節次或主題</label><input id="search" type="search" placeholder="例如：3-2、漏電流、整流" autocomplete="off"><div class="filters" aria-label="依章節篩選"><button type="button" data-filter="all" aria-pressed="true">全部</button><button type="button" data-filter="2" aria-pressed="false">第 2 章・二極體</button><button type="button" data-filter="3" aria-pressed="false">第 3 章・BJT</button></div><p class="result" id="result" aria-live="polite">共 19 集</p></div><div id="lesson-list"><section class="lesson-group" data-chapter="2"><h3>2-1 本質P型N型半導體</h3><ol><li><button class="lesson" data-id="2-1" type="button"><span class="episode-code">2-1</span><span>本質P型N型半導體</span><small>12:32</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="2"><h3>2-2 P-N接面二極體</h3><ol><li><button class="lesson" data-id="2-2-1" type="button"><span class="episode-code">2-2-1</span><span>PN接面與偏壓</span><small>13:07</small></button></li><li><button class="lesson" data-id="2-2-2" type="button"><span class="episode-code">2-2-2</span><span>特性曲線電阻電容</span><small>8:38</small></button></li><li><button class="lesson" data-id="2-2-3" type="button"><span class="episode-code">2-2-3</span><span>等效模型與電路分析</span><small>8:27</small></button></li><li><button class="lesson" data-id="2-2-4" type="button"><span class="episode-code">2-2-4</span><span>實習規格與量測</span><small>6:11</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="2"><h3>2-3 稽納二極體</h3><ol><li><button class="lesson" data-id="2-3-1" type="button"><span class="episode-code">2-3-1</span><span>特性與崩潰現象</span><small>8:02</small></button></li><li><button class="lesson" data-id="2-3-2" type="button"><span class="episode-code">2-3-2</span><span>等效模型與穩壓電路</span><small>9:14</small></button></li><li><button class="lesson" data-id="2-3-3" type="button"><span class="episode-code">2-3-3</span><span>穩壓範圍計算</span><small>8:23</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="2"><h3>2-4 發光二極體</h3><ol><li><button class="lesson" data-id="2-4" type="button"><span class="episode-code">2-4</span><span>發光二極體</span><small>11:20</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="2"><h3>2-5 整流電路</h3><ol><li><button class="lesson" data-id="2-5-1" type="button"><span class="episode-code">2-5-1</span><span>變壓器與半波整流</span><small>10:29</small></button></li><li><button class="lesson" data-id="2-5-2" type="button"><span class="episode-code">2-5-2</span><span>全波整流與橋式量測</span><small>12:53</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="2"><h3>2-6 濾波電路</h3><ol><li><button class="lesson" data-id="2-6-1" type="button"><span class="episode-code">2-6-1</span><span>電容充放電與漣波</span><small>12:37</small></button></li><li><button class="lesson" data-id="2-6-2" type="button"><span class="episode-code">2-6-2</span><span>濾波計算與電路比較</span><small>11:52</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="3"><h3>3-1 雙極性接面電晶體之構造及特性</h3><ol><li><button class="lesson" data-id="3-1-1" type="button"><span class="episode-code">3-1-1</span><span>構造符號與基本特性</span><small>9:52</small></button></li><li><button class="lesson" data-id="3-1-2" type="button"><span class="episode-code">3-1-2</span><span>偏壓工作區與電流方向</span><small>12:01</small></button></li><li><button class="lesson" data-id="3-1-3" type="button"><span class="episode-code">3-1-3</span><span>電流增益與元件量測</span><small>11:54</small></button></li></ol></section>
+<section class="lesson-group" data-chapter="3"><h3>3-2 雙極性接面電晶體之特性曲線</h3><ol><li><button class="lesson" data-id="3-2-1" type="button"><span class="episode-code">3-2-1</span><span>放大組態與特性曲線</span><small>9:31</small></button></li><li><button class="lesson" data-id="3-2-2" type="button"><span class="episode-code">3-2-2</span><span>漏電流與電流增益</span><small>10:13</small></button></li><li><button class="lesson" data-id="3-2-3" type="button"><span class="episode-code">3-2-3</span><span>開關電路與額定功率</span><small>9:49</small></button></li></ol></section></div><p class="empty" id="empty" hidden>找不到相符主題，請換個關鍵字。</p></aside>
+</main>
+<footer>簡樹桐老師・電子學影音教學　｜　<a href="index.html">回首頁</a></footer>
+<script id="lesson-data" type="application/json">[
+  {
+    "id": "2-1",
+    "title": "本質P型N型半導體",
+    "section": "2-1",
+    "sectionTitle": "本質P型N型半導體",
+    "chapter": 2,
+    "duration": 751.967,
+    "poster": "media/electronics/2-1.jpg",
+    "srt": "media/electronics/2-1.srt",
+    "vtt": "media/electronics/2-1.vtt",
+    "src": "media/electronics/2-1.mp4"
+  },
+  {
+    "id": "2-2-1",
+    "title": "PN接面與偏壓",
+    "section": "2-2",
+    "sectionTitle": "P-N接面二極體",
+    "chapter": 2,
+    "duration": 787.367,
+    "poster": "media/electronics/2-2-1.jpg",
+    "srt": "media/electronics/2-2-1.srt",
+    "vtt": "media/electronics/2-2-1.vtt",
+    "youtube": "ok2wDs5SFHI"
+  },
+  {
+    "id": "2-2-2",
+    "title": "特性曲線電阻電容",
+    "section": "2-2",
+    "sectionTitle": "P-N接面二極體",
+    "chapter": 2,
+    "duration": 517.967,
+    "poster": "media/electronics/2-2-2.jpg",
+    "srt": "media/electronics/2-2-2.srt",
+    "vtt": "media/electronics/2-2-2.vtt",
+    "youtube": "E9rdcJ5saEo"
+  },
+  {
+    "id": "2-2-3",
+    "title": "等效模型與電路分析",
+    "section": "2-2",
+    "sectionTitle": "P-N接面二極體",
+    "chapter": 2,
+    "duration": 506.933,
+    "poster": "media/electronics/2-2-3.jpg",
+    "srt": "media/electronics/2-2-3.srt",
+    "vtt": "media/electronics/2-2-3.vtt",
+    "youtube": "JOcrLtTJFkI"
+  },
+  {
+    "id": "2-2-4",
+    "title": "實習規格與量測",
+    "section": "2-2",
+    "sectionTitle": "P-N接面二極體",
+    "chapter": 2,
+    "duration": 371.333,
+    "poster": "media/electronics/2-2-4.jpg",
+    "srt": "media/electronics/2-2-4.srt",
+    "vtt": "media/electronics/2-2-4.vtt",
+    "youtube": "GVxwqEgbqC0"
+  },
+  {
+    "id": "2-3-1",
+    "title": "特性與崩潰現象",
+    "section": "2-3",
+    "sectionTitle": "稽納二極體",
+    "chapter": 2,
+    "duration": 482.478,
+    "poster": "media/electronics/2-3-1.jpg",
+    "srt": "media/electronics/2-3-1.srt",
+    "vtt": "media/electronics/2-3-1.vtt",
+    "youtube": "u_ig7q19pBs"
+  },
+  {
+    "id": "2-3-2",
+    "title": "等效模型與穩壓電路",
+    "section": "2-3",
+    "sectionTitle": "稽納二極體",
+    "chapter": 2,
+    "duration": 554.067,
+    "poster": "media/electronics/2-3-2.jpg",
+    "srt": "media/electronics/2-3-2.srt",
+    "vtt": "media/electronics/2-3-2.vtt",
+    "youtube": "zT16wplSpjo"
+  },
+  {
+    "id": "2-3-3",
+    "title": "穩壓範圍計算",
+    "section": "2-3",
+    "sectionTitle": "稽納二極體",
+    "chapter": 2,
+    "duration": 503.333,
+    "poster": "media/electronics/2-3-3.jpg",
+    "srt": "media/electronics/2-3-3.srt",
+    "vtt": "media/electronics/2-3-3.vtt",
+    "youtube": "oyisa1ohFs0"
+  },
+  {
+    "id": "2-4",
+    "title": "發光二極體",
+    "section": "2-4",
+    "sectionTitle": "發光二極體",
+    "chapter": 2,
+    "duration": 680.0,
+    "poster": "media/electronics/2-4.jpg",
+    "srt": "media/electronics/2-4.srt",
+    "vtt": "media/electronics/2-4.vtt",
+    "src": "media/electronics/2-4.mp4"
+  },
+  {
+    "id": "2-5-1",
+    "title": "變壓器與半波整流",
+    "section": "2-5",
+    "sectionTitle": "整流電路",
+    "chapter": 2,
+    "duration": 628.96,
+    "poster": "media/electronics/2-5-1.jpg",
+    "srt": "media/electronics/2-5-1.srt",
+    "vtt": "media/electronics/2-5-1.vtt",
+    "src": "media/electronics/2-5-1.mp4"
+  },
+  {
+    "id": "2-5-2",
+    "title": "全波整流與橋式量測",
+    "section": "2-5",
+    "sectionTitle": "整流電路",
+    "chapter": 2,
+    "duration": 773.233,
+    "poster": "media/electronics/2-5-2.jpg",
+    "srt": "media/electronics/2-5-2.srt",
+    "vtt": "media/electronics/2-5-2.vtt",
+    "src": "media/electronics/2-5-2.mp4"
+  },
+  {
+    "id": "2-6-1",
+    "title": "電容充放電與漣波",
+    "section": "2-6",
+    "sectionTitle": "濾波電路",
+    "chapter": 2,
+    "duration": 756.633,
+    "poster": "media/electronics/2-6-1.jpg",
+    "srt": "media/electronics/2-6-1.srt",
+    "vtt": "media/electronics/2-6-1.vtt",
+    "src": "media/electronics/2-6-1.mp4"
+  },
+  {
+    "id": "2-6-2",
+    "title": "濾波計算與電路比較",
+    "section": "2-6",
+    "sectionTitle": "濾波電路",
+    "chapter": 2,
+    "duration": 712.267,
+    "poster": "media/electronics/2-6-2.jpg",
+    "srt": "media/electronics/2-6-2.srt",
+    "vtt": "media/electronics/2-6-2.vtt",
+    "src": "media/electronics/2-6-2.mp4"
+  },
+  {
+    "id": "3-1-1",
+    "title": "構造符號與基本特性",
+    "section": "3-1",
+    "sectionTitle": "雙極性接面電晶體之構造及特性",
+    "chapter": 3,
+    "duration": 592.467,
+    "poster": "media/electronics/3-1-1.jpg",
+    "srt": "media/electronics/3-1-1.srt",
+    "vtt": "media/electronics/3-1-1.vtt",
+    "src": "media/electronics/3-1-1.mp4"
+  },
+  {
+    "id": "3-1-2",
+    "title": "偏壓工作區與電流方向",
+    "section": "3-1",
+    "sectionTitle": "雙極性接面電晶體之構造及特性",
+    "chapter": 3,
+    "duration": 721.233,
+    "poster": "media/electronics/3-1-2.jpg",
+    "srt": "media/electronics/3-1-2.srt",
+    "vtt": "media/electronics/3-1-2.vtt",
+    "src": "media/electronics/3-1-2.mp4"
+  },
+  {
+    "id": "3-1-3",
+    "title": "電流增益與元件量測",
+    "section": "3-1",
+    "sectionTitle": "雙極性接面電晶體之構造及特性",
+    "chapter": 3,
+    "duration": 714.266,
+    "poster": "media/electronics/3-1-3.jpg",
+    "srt": "media/electronics/3-1-3.srt",
+    "vtt": "media/electronics/3-1-3.vtt",
+    "src": "media/electronics/3-1-3.mp4"
+  },
+  {
+    "id": "3-2-1",
+    "title": "放大組態與特性曲線",
+    "section": "3-2",
+    "sectionTitle": "雙極性接面電晶體之特性曲線",
+    "chapter": 3,
+    "duration": 571.494,
+    "poster": "media/electronics/3-2-1.jpg",
+    "srt": "media/electronics/3-2-1.srt",
+    "vtt": "media/electronics/3-2-1.vtt",
+    "src": "media/electronics/3-2-1.mp4"
+  },
+  {
+    "id": "3-2-2",
+    "title": "漏電流與電流增益",
+    "section": "3-2",
+    "sectionTitle": "雙極性接面電晶體之特性曲線",
+    "chapter": 3,
+    "duration": 612.625,
+    "poster": "media/electronics/3-2-2.jpg",
+    "srt": "media/electronics/3-2-2.srt",
+    "vtt": "media/electronics/3-2-2.vtt",
+    "src": "media/electronics/3-2-2.mp4"
+  },
+  {
+    "id": "3-2-3",
+    "title": "開關電路與額定功率",
+    "section": "3-2",
+    "sectionTitle": "雙極性接面電晶體之特性曲線",
+    "chapter": 3,
+    "duration": 588.833,
+    "poster": "media/electronics/3-2-3.jpg",
+    "srt": "media/electronics/3-2-3.srt",
+    "vtt": "media/electronics/3-2-3.vtt",
+    "src": "media/electronics/3-2-3.mp4"
+  }
+]</script>
+<script>
+'use strict';
+const lessons=JSON.parse(document.getElementById('lesson-data').textContent);
+const $=id=>document.getElementById(id), player=$('player'), frame=$('youtube');
+let current=-1, filter='all', lastSaved=0;
+const stateKey='stjedu-electronics-progress-v1';
+function readState(){try{return JSON.parse(localStorage.getItem(stateKey)||'{}')}catch{return {}}}
+function storeProgress(){if(current<0||!lessons[current].src||!Number.isFinite(player.currentTime))return;try{const state=readState();state[lessons[current].id]=player.ended?0:player.currentTime;localStorage.setItem(stateKey,JSON.stringify(state))}catch{}}
+function duration(s){return Math.floor(Math.round(s)/60)+':'+String(Math.round(s)%60).padStart(2,'0')}
+function selectLesson(index,play=false,updateUrl=true){
+ if(index<0||index>=lessons.length)return;
+ storeProgress();player.pause();player.removeAttribute('src');player.replaceChildren();player.load();frame.removeAttribute('src');
+ current=index;lastSaved=0;const item=lessons[index];$('play-error').hidden=true;
+ $('lesson-meta').textContent='第 '+item.chapter+' 章 · '+item.id+' · '+duration(item.duration);
+ $('lesson-title').textContent=item.title;
+ $('lesson-description').textContent=item.section+' '+item.sectionTitle;
+ $('download-srt').href=item.srt;$('download-srt').download=item.id+'_'+item.title+'.srt';
+ $('previous').disabled=index===0;$('next').disabled=index===lessons.length-1;
+ document.querySelectorAll('.lesson').forEach(b=>{if(b.dataset.id===item.id)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+ player.hidden=!!item.youtube;frame.hidden=!item.youtube;$('autoplay-label').hidden=!!item.youtube;
+ if(item.youtube){
+   frame.src='https://www.youtube-nocookie.com/embed/'+item.youtube+'?rel=0'+(play?'&autoplay=1':'');
+   $('open-video').href='https://www.youtube.com/watch?v='+item.youtube;
+   $('player-note').textContent='本集使用 YouTube 播放器，亦可另開 YouTube 觀看；可下載繁體字幕。';
+ }else{
+   player.poster=item.poster;player.src=item.src;
+   const track=document.createElement('track');track.kind='subtitles';track.label='繁體中文';track.srclang='zh-Hant';track.src=item.vtt;player.append(track);
+   $('open-video').href=item.src;$('player-note').textContent='影片已附繁體字幕；同一瀏覽器會記住各集觀看進度。';
+   player.load();if(play)player.play().catch(()=>{});
+ }
+ $('open-video').target='_blank';$('open-video').rel='noopener noreferrer';
+ if(updateUrl){const url=new URL(location.href);url.searchParams.set('lesson',item.id);history.replaceState(null,'',url)}
+}
+player.addEventListener('loadedmetadata',()=>{const item=lessons[current];if(!item||!item.src)return;const time=Number(readState()[item.id]);if(time>0&&time<player.duration-8)player.currentTime=time});
+player.addEventListener('timeupdate',()=>{if(Math.abs(player.currentTime-lastSaved)>5){lastSaved=player.currentTime;storeProgress()}});
+player.addEventListener('pause',storeProgress);
+player.addEventListener('ended',()=>{storeProgress();if($('autoplay').checked&&current<lessons.length-1)selectLesson(current+1,true)});
+player.addEventListener('error',()=>{if(current>=0&&lessons[current].src&&player.getAttribute('src'))$('play-error').hidden=false});
+window.addEventListener('pagehide',storeProgress);
+$('previous').addEventListener('click',()=>selectLesson(current-1));$('next').addEventListener('click',()=>selectLesson(current+1));
+document.querySelectorAll('.lesson').forEach(b=>b.addEventListener('click',()=>selectLesson(lessons.findIndex(x=>x.id===b.dataset.id))));
+function applyFilter(){let count=0;const term=$('search').value.trim().toLowerCase();document.querySelectorAll('.lesson').forEach(b=>{const item=lessons.find(x=>x.id===b.dataset.id);const ok=(filter==='all'||String(item.chapter)===filter)&&[item.id,item.title,item.sectionTitle].join(' ').toLowerCase().includes(term);b.closest('li').hidden=!ok;if(ok)count++});document.querySelectorAll('.lesson-group').forEach(g=>g.hidden=![...g.querySelectorAll('li')].some(li=>!li.hidden));$('result').textContent='顯示 '+count+' / '+lessons.length+' 集';$('empty').hidden=count>0}
+$('search').addEventListener('input',applyFilter);
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{filter=b.dataset.filter;document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));applyFilter()}));
+const wanted=new URLSearchParams(location.search).get('lesson');const initial=lessons.findIndex(x=>x.id===wanted);selectLesson(initial<0?0:initial,false,false);
+</script>
+</body></html>
