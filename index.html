@@ -950,6 +950,21 @@
         }
     </style>
     <link rel="stylesheet" href="redesign.css?v=20261018-hovernav">
+
+    <style>
+        .workshop-practice { background: #fff7ed; border-bottom: 1px solid #e8d7c6; scroll-margin-top: 88px; }
+        .workshop-practice-inner { max-width: 1400px; margin: 0 auto; padding: 24px 2rem; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .workshop-practice h2 { margin: 4px 0 8px; color: #123343; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.4; }
+        .workshop-practice p { margin: 0; color: #475569; line-height: 1.7; }
+        .workshop-practice-date { color: #9a451f; font-size: .85rem; font-weight: 700; }
+        .workshop-practice .workshop-practice-note { margin-top: 6px; font-size: .85rem; }
+        .workshop-practice-action { flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .workshop-practice-link { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 13px 24px; background: #a84c26; color: #fff; border-radius: 6px; text-decoration: none; font-weight: 700; }
+        .workshop-practice-link:hover { background: #873a1b; }
+        .workshop-practice-link:focus-visible { outline: 3px solid #123343; outline-offset: 4px; }
+        .workshop-practice-url { color: #475569; font-size: .85rem; overflow-wrap: anywhere; }
+        @media (max-width: 680px) { .workshop-practice-inner { flex-direction: column; align-items: stretch; padding: 22px 1.25rem; gap: 16px; } .workshop-practice-action { align-items: stretch; } .workshop-practice-url { text-align: center; } }
+    </style>
 </head>
 <body>
 <a class="skip-link" href="#solutions">跳至研習教材</a>
@@ -957,7 +972,7 @@
     <!-- 01 頂部資訊列 -->
     <div class="site-topbar teaching-masthead">
 <div class="masthead-container">
- <div class="masthead-copy"><div class="masthead-eyebrow"><span></span> ANTIGRAVITY · TEACHING LAB</div><div class="masthead-title">AI × 電學 × 智慧教學</div><p>連結教學靈感，探索科技實作。</p><div class="masthead-tags"><span>AI 代理應用</span><span>電子電路</span><span>虛擬儀表</span><span>智慧物聯網</span></div><div class="masthead-updated"><span aria-hidden="true">◷</span> 網頁更新：<time datetime="2026-10-26">2026-10-26</time></div></div>
+ <div class="masthead-copy"><div class="masthead-eyebrow"><span></span> ANTIGRAVITY · TEACHING LAB</div><div class="masthead-title">AI × 電學 × 智慧教學</div><p>連結教學靈感，探索科技實作。</p><div class="masthead-tags"><span>AI 代理應用</span><span>電子電路</span><span>虛擬儀表</span><span>智慧物聯網</span></div><div class="masthead-updated"><span aria-hidden="true">◷</span> 網頁更新：<time datetime="2026-10-29">2026-10-29</time></div></div>
  <nav class="masthead-links" aria-label="橫幅快速連結"><a href="#circuits">電路圖庫 ↗</a><a href="#faq">研習 FAQ ↗</a></nav>
 </div></div>
 
@@ -982,6 +997,24 @@
 <details class="nav-submenu" id="materials-menu"><summary class="nav-link">研習教材 <span aria-hidden="true">⌄</span></summary><div class="nav-submenu-panel"><div class="nav-submenu-title">教學資源與實作課程</div><a href="#solutions">九大教材總覽</a><a href="github_tutorial.html">GitHub 個人網頁教學</a><a href="codex_browser_course.html">Codex 研習協作流程</a><a href="ai_video_workshop.html">AI 教學影片製作實戰</a><a href="yolo_webcam_course.html">YOLO 視覺實戰</a><a href="esp32_mqtt_course.html">ESP32 物聯網實作</a><a href="#slides">簡報風格比較與下載</a></div></details><details class="nav-submenu" id="circuits-menu"><summary class="nav-link">電學題庫 <span aria-hidden="true">⌄</span></summary><div class="nav-submenu-panel"><div class="nav-submenu-title">基本電學與電子學</div><a href="#circuits" data-circuit="1">01 電阻串並聯與總電流</a><a href="#circuits" data-circuit="2">02 戴維寧等效與負載</a><a href="#circuits" data-circuit="3">03 最大功率轉移</a><a href="#circuits" data-circuit="4">04 BJT 小訊號放大</a><a href="electronics_bjt.html">BJT 電子學完整教學 ↗</a><a href="electronics_videos.html">電子學動畫影音 · 19 集 ↗</a></div></details><a href="instrument.html" class="nav-link">儀表實驗室</a><a href="#faq" class="nav-link">常見問題</a><details class="download-menu" id="download-menu"><summary class="nav-pill-btn">下載研習簡報 <span aria-hidden="true">⌄</span></summary><div class="download-options"><div class="download-menu-title">選擇簡報風格 · 各 28 頁</div><a href="slides.pptx" download="Antigravity_教學應用研習_原始版.pptx"><span>原始版</span><small>0.9 MB ↓</small></a><a href="presentations/academic.pptx" download="Antigravity_教學應用研習_現代學術風.pptx"><span>現代學術風</span><small>2.3 MB ↓</small></a><a href="presentations/tech.pptx" download="Antigravity_教學應用研習_科技風版.pptx"><span>深色科技風</span><small>26.9 MB ↓</small></a><a href="presentations/light-tech.pptx" download="Antigravity_教學應用研習_白底科技版_電路修正版.pptx"><span>白底科技風</span><small>3.3 MB ↓</small></a><a href="presentations/future.pptx" download="Antigravity_教學應用研習_未來實驗室風.pptx"><span>未來實驗室風</span><small>3.3 MB ↓</small></a><a href="presentations/japanese.pptx" download="Antigravity_教學應用研習_日系教學插畫風.pptx"><span>日系教學插畫風</span><small>3.9 MB ↓</small></a><a href="#slides" class="download-compare">比較所有風格 <span>→</span></a></div></details></nav>
         </div>
     </header>
+
+    <!-- 2026-10-29 研習練習入口 -->
+    <section class="workshop-practice" id="workshop-1029" aria-labelledby="workshop-practice-title">
+        <div class="workshop-practice-inner">
+            <div>
+                <div class="workshop-practice-date"><time datetime="2026-10-29">2026/10/29</time>・優質化研習</div>
+                <h2 id="workshop-practice-title">10/29 研習練習入口</h2>
+                <p>進入 NMKING AI 平台，領取「優質化研習（1029）」AI 額度，跟著課程進行操作練習。</p>
+                <p class="workshop-practice-note">開放領取時段：08:00–16:00；點數池到期：2026/10/29 23:59:59。</p>
+                <p class="workshop-practice-note">領取頁有活動稽核告知：送出的文字問題會保存供活動分析，請先閱讀並確認後再領取。</p>
+            </div>
+            <div class="workshop-practice-action">
+                <a class="workshop-practice-link" href="https://ai.nmking.io/qbdrj" target="_blank" rel="noopener noreferrer" aria-label="開啟研習練習網址（另開新分頁）">開啟研習練習網址 <span aria-hidden="true">↗</span></a>
+                <span class="workshop-practice-url">ai.nmking.io/qbdrj</span>
+            </div>
+        </div>
+    </section>
+
 
     <!-- 03 科技首頁 HERO SECTION (橘野深黑 ✕ 橘金高質感) -->
     <section class="hero-section">
@@ -2150,3 +2183,4 @@ document.addEventListener('keydown',function(event){if(event.key==='Escape'){con
 </script>
 </body>
 </html>
+
