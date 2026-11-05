@@ -1239,9 +1239,9 @@
                         <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
                     </div>
                     <h3 class="sol-card-title">MCP × Codex 研習協作指南</h3>
-                    <p class="sol-card-desc">以瀏覽器協作協助研習操作，新增 Codex 版六步驟：連線、登入接力、正常播放、單元切換與證書驗收。</p>
-                    <ul class="sol-features"><li>臺北 e 大實作經驗與適用範圍</li><li>學員觀看，Codex 協助操作</li><li>可複製指令與連線疑難排解</li></ul>
-                    <a href="codex_browser_course.html" class="sol-btn" style="background:#173b4d;color:white;">Codex 版操作流程 <span>→</span></a>
+                    <p class="sol-card-desc">整理兩種看影片方式：Codex 內建瀏覽器與已登入 Chrome＋DevTools MCP，附私人 Gmail 登入接力、逐步檢查及本次實測紀錄。</p>
+                    <ul class="sol-features"><li>內建瀏覽器與 Chrome MCP 操作流程</li><li>私人 Gmail 登入由學員完成</li><li>遠端偵錯安全與外掛限制</li></ul>
+                    <a href="codex_browser_course.html" class="sol-btn" style="background:#173b4d;color:white;">兩種看影片方式 <span>→</span></a>
                     <button onclick="openModal('modalMCP')" class="sol-btn" style="margin-top:8px;width:100%;">MCP 協作方式說明 <span>→</span></button>
                 </div>
 
@@ -1874,7 +1874,7 @@ F. 右側分頁欄（窄螢幕移至下方）：
     </div>
 
     <!-- 模態視窗 5 (MCP 數位研習自動化 ✕ 磨課師通關指南全套手冊) -->
-    <div class="modal" id="modalMCP"><div class="modal-box" style="max-width:850px;padding:2rem;"><button class="modal-close" onclick="closeModal('modalMCP')" aria-label="關閉 MCP 協作說明">&times;</button><h3 style="color:#173b4d;font-size:24px;margin-bottom:16px;">MCP 與瀏覽器協作</h3><p>MCP 用來連接代理人與工具。Chrome 擴充功能、內建瀏覽器及自訂 Chrome DevTools MCP 是不同的連接方式，設定與可用工具也不同。</p><h4 style="margin-top:20px;">教師建議起步方式</h4><ol style="padding-left:24px;line-height:1.9;margin:12px 0;"><li>先確認目前桌面環境能連接瀏覽器。</li><li>學員自行登入、選課並開啟播放器。</li><li>請代理人回報可見畫面，再協助播放、暫停與單元切換。</li><li>依平台顯示的實際紀錄確認結果，完成資格後再下載證書。</li></ol><p style="color:#627b87;">若採自訂 MCP，請依所選伺服器文件設定。平台警示應閱讀並依要求處理；登入、測驗與學習紀錄不應用腳本偽造。</p><a class="btn-hero-primary" style="margin-top:20px;" href="codex_browser_course.html">查看 Codex 版六步驟 →</a></div></div>
+    <div class="modal" id="modalMCP"><div class="modal-box" style="max-width:850px;padding:2rem;"><button class="modal-close" onclick="closeModal('modalMCP')" aria-label="關閉 MCP 協作說明">&times;</button><h3 style="color:#173b4d;font-size:24px;margin-bottom:16px;">MCP 與瀏覽器協作</h3><p>看影片有兩種主要方式：使用 Codex 內建瀏覽器，或讓 Chrome DevTools MCP 連接目前已登入的 Chrome。Chrome 外掛是另一種可選作法，通常需要搭配本機橋接程式；不同方式不會自動共用登入狀態。</p><h4 style="margin-top:20px;">教師建議起步方式</h4><ol style="padding-left:24px;line-height:1.9;margin:12px 0;"><li>選擇內建瀏覽器或目前 Chrome＋DevTools MCP，並確認看得到正確課程頁。</li><li>私人 Gmail 登入、驗證與選課由學員本人完成。</li><li>先確認章節、播放時間與字幕，再要求播放、暫停或章節操作。</li><li>操作後核對實際畫面和平台紀錄；學員仍需自行觀看、理解與作答。</li></ol><p style="color:#627b87;">目前 Chrome MCP 透過遠端偵錯連線時不需要額外外掛，但權限可涵蓋瀏覽器頁面和網站資料；只連接信任的程式。若安裝外掛，先確認來源、權限及是否需要本機橋接。</p><a class="btn-hero-primary" style="margin-top:20px;" href="codex_browser_course.html">閱讀兩種看影片方式 →</a></div></div>
 
     <!-- 模態視窗 6 (手寫紙本成績處理與自動正規化任務全攻略) -->
     <div class="modal" id="modalGrades">
