@@ -985,7 +985,19 @@
 @media(max-width:1000px){.workshop-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.workshop-videos-inner{padding:0 1.25rem}.workshop-video-grid{grid-template-columns:1fr}.workshop-videos{padding:32px 0}}
 </style>
-</head>
+<style>
+.github-course-feature{padding:42px 0;background:#edf3f3;border-bottom:1px solid #d4e0e3;scroll-margin-top:88px}
+.github-course-feature-inner{max-width:1400px;margin:auto;padding:0 2rem;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,1fr);gap:32px;align-items:center}
+.github-course-feature h2{font-size:clamp(1.6rem,3vw,2.2rem);color:#123343;margin:8px 0 14px;line-height:1.4}
+.github-course-feature p{color:#475569;line-height:1.8;margin-bottom:16px}
+.github-course-feature-tag{color:#9a451f;font-size:.9rem;font-weight:700}
+.github-course-feature-links{display:flex;gap:12px;flex-wrap:wrap}
+.github-course-feature-links a{padding:11px 18px;background:#fff;color:#123343;border:1px solid #b8cdd3;border-radius:6px;text-decoration:none;font-weight:700}
+.github-course-feature-links a:first-child{background:#123343;color:#fff;border-color:#123343}
+.github-course-feature a:focus-visible{outline:3px solid #b45b32;outline-offset:4px}
+.github-course-feature img{width:100%;display:block;border-radius:10px;border:1px solid #d4e0e3}
+@media(max-width:760px){.github-course-feature-inner{grid-template-columns:1fr;padding:0 1.25rem}}
+</style></head>
 <body>
 <a class="skip-link" href="#solutions">跳至研習教材</a>
 
@@ -1037,6 +1049,20 @@
 
 
     <!-- 03 科技首頁 HERO SECTION (橘野深黑 ✕ 橘金高質感) -->
+
+<section class="github-course-feature" id="github-pages-course" aria-labelledby="github-pages-course-title">
+<div class="github-course-feature-inner"><div>
+<div class="github-course-feature-tag">教師研習・GitHub 個人網頁逐步教學</div>
+<h2 id="github-pages-course-title">跟著影片，建立自己的教學小站</h2>
+<p>8 分 31 秒完整教學，搭配台灣中文女聲、繁體中文字幕與實際介面重點標示。從儲存庫命名、建立首頁，到 Pages 發布與更新，逐步完成自己的個人網站。</p>
+<p>附 20 張教學影像、章節講稿、SRT 字幕與可修改的首頁範本，方便研習跟做與課後複習。</p>
+<div class="github-course-feature-links">
+<a href="media/github-pages-course.html">觀看教學影片與章節 →</a>
+<a href="media/github-pages-materials.zip" download>下載完整教材包 ↓</a>
+<a href="media/github-pages-starter.html" download="index.html">下載首頁範本 ↓</a>
+</div></div>
+<a href="media/github-pages-course.html" aria-label="開啟 GitHub 個人網頁教學影片"><img src="media/github-pages-cover.png" alt="GitHub 個人網頁逐步教學影片封面：個人介紹、課程教材與學習資源" loading="lazy"></a>
+</div></section>
 
 <!-- 研習影片：播放清單與五集實作 -->
 <section class="workshop-videos" id="workshop-videos" aria-labelledby="workshop-videos-title">
@@ -2236,6 +2262,7 @@ document.addEventListener('keydown',function(event){if(event.key==='Escape'){con
 </script>
 </body>
 </html>
+
 
 
 
